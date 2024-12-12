@@ -1,0 +1,62 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #1B1B1B   ;
+}
+span{
+    color:#F6C028;
+}
+.lo{
+    position: relative;
+    color:white;
+    font-size:20px;
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+
+}
+.nav ul{
+    display: flex;
+    list-style: none;
+}
+.nav li{
+    margin-left: 50px;
+    color: white;
+}
+.nav button{
+    background-color: #F6C028;
+    color: white;
+    width: 80px;
+    padding: 0px 20px;
+    border-radius: 10px;
+}
+
+.login{
+    color: white;
+    text-decoration: none;
+    background-color: #F6C028;
+}
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align:center;
+    color: white;
+    margin-top: 60px;
+}
+.body .first{
+    font-size:60px;
+}
+.body .second{
+    font-size:50px;
+}
+.body .btn1{
+    background-color: #F6C028;
+    height: 50px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-top:20px;
+    font-weight: 800;
+    font-size:20px;
+}
