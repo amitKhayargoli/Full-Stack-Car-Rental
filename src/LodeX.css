@@ -1,6 +1,11 @@
 *{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #1B1B1B   ;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(40,40,40);
 }
 span{
     color:#F6C028;
@@ -12,8 +17,11 @@ span{
 }
 .nav{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 40px;
+    margin-bottom: 120px;
+
+    
 
 }
 .nav ul{
@@ -28,8 +36,9 @@ span{
     background-color: #F6C028;
     color: white;
     width: 80px;
-    padding: 0px 20px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    border: none;
 }
 
 .login{
@@ -37,13 +46,16 @@ span{
     text-decoration: none;
     background-color: #F6C028;
 }
+
+
+
 .body{
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align:center;
     color: white;
-    margin-top: 60px;
+    padding-top: 40px;
 }
 .body .first{
     font-size:60px;
@@ -60,3 +72,56 @@ span{
     font-weight: 800;
     font-size:20px;
 }
+
+.icons-container{
+    margin-top: 120px;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(10rem,20rem));
+    background: #100f0f;
+    justify-content: space-evenly;
+}
+.icons-container .icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2rem;
+    color: white;
+    border-radius   :.5rem;
+}
+.icons-container .icons i{
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.5rem;
+    border-radius: 50%;
+    background: #eee;
+    text-align: center;
+    color: black;
+}
+.icons-container .icons .content h3{
+    color: #F6C028;
+    font-size: 25px;
+}
+.icons-container .icons .content p{
+    color: #eee;
+    font-size: 15px;
+}
+
+.icons-container .icons:hover i{
+    background: #F6C028;
+}
+.icons-container .icons:hover{
+    background-color: #bab8b8;
+}
+.icons-container .icons:hover .content{
+    background-color: #bab8b8;
+}
+.icons-container .icons:hover .content p{
+    background-color: #bab8b8;
+    color: black;
+}
+.icons-container .icons:hover .content h3{
+    background-color: #bab8b8;
+    color:black;
+} 
