@@ -188,3 +188,51 @@ body {
     background-size: contain;
 }
 
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column-reverse; /* Image section will come first */
+    }
+
+    .image-section {
+        order: -1; /* Ensure image comes before login form */
+    }
+
+    .login-section {
+        order: 0;
+    }
+}
+
+/* @media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .left, .right {
+        width: 100%;
+        padding: 20px;
+    }
+
+    form {
+        max-width: 90%;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+
+    .social-btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+} */
+
+@media (max-width :900px){
+    .container{
+        flex-direction: column;
+    }
+    .social-btn{
+        align-items: center;
+        justify-content: center;
+        width:1px;
+    }
+}
