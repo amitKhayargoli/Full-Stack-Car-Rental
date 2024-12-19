@@ -202,29 +202,6 @@ body {
     }
 }
 
-/* @media (max-width: 768px) {
-    .login-container {
-        flex-direction: column;
-    }
-
-    .left, .right {
-        width: 100%;
-        padding: 20px;
-    }
-
-    form {
-        max-width: 90%;
-    }
-
-    .social-login {
-        flex-direction: column;
-    }
-
-    .social-btn {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-} */
 
 @media (max-width :900px){
     .container{
