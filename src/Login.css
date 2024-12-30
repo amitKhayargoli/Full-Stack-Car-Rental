@@ -179,13 +179,67 @@
 .social-btn.google {
     background-image: url("google.png");
     padding: 20px;
-    object-fit: contain;
+    background: contain;
 }
 
 
 .social-btn.facebook {
     background-image: url("facebook.png");
     padding: 20px;
-    object-fit: contain;
+    background: contain;
+}
+/* Responsive Design */
+@media (max-width: 900px) {
+    .login-container {
+        flex-direction: column-reverse; 
+        max-height: 100%;
+    }
+
+    .image-section,
+    .login-section {
+        width: 100%; 
+        padding: 20px; 
+        align-items: center;
+    }
+
+    .login-card {
+        max-width: 100%;
+    }
+
+    .social-login {
+        flex-direction: column;
+    }
+
+    .social-btn {
+        width: 80%;
+        margin-bottom: 10px; 
+    }
+}
+
+@media (max-width: 600px) {
+    .login-card h2 {
+        font-size: 20px; 
+    }
+
+    .form-group input {
+        width: 100%; 
+    }
+
+    .submit-btn {
+        width: 100%; 
+    }
+
+    .options {
+        flex-direction: column; 
+        align-items: flex-start;
+    }
+
+    .options label {
+        margin-bottom: 10px; 
+    }
+
+    .social-btn {
+        width: 50%; 
+    }
 }
 
