@@ -14,11 +14,12 @@
     display: flex;
     width: 90%;
     max-width: 900px;
-    max-height: 550px;
     border-radius: 15px;
     overflow: hidden;
     /* border: 2px solid black; */
     box-shadow: 0 8px 15px rgb(0, 0, 0);
+
+    max-height: 550px;
 }
 
 /* Right-image*/
@@ -30,6 +31,7 @@
     justify-content: center;
     background-color:#F6BB4D;
     position: relative; 
+
       
     
 }
@@ -114,7 +116,7 @@
     text-decoration: underline;
 }
 
-.submit-btn {
+.submit {
     width: 80%;
     padding: 10px;
     background-color: black;
@@ -189,3 +191,16 @@
     object-fit: contain;
 }
 
+#username_error{
+    display: flex;
+    color: red;
+    font-size: 10px;
+    margin-top: 15px;
+}
+
+#password_error{
+    display: flex;
+    color: red;
+    font-size: 10px;
+    margin-top: 15px;
+}
