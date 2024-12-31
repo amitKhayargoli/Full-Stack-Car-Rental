@@ -5,7 +5,9 @@ import car from "./car.png";
 import "./Login.css";
 
 export default function Login() {
-  function validation() {
+  const handleValidation = (e) => {
+    e.preventDefault();
+
     const loginForm = document.getElementById("loginForm");
     const username = document.getElementById("username");
     const password = document.getElementById("password");
@@ -38,7 +40,7 @@ export default function Login() {
       console.log(`${event.key}`);
       password_error.innerHTML = "";
     });
-  }
+  };
 
   // Slideshow Functionality using useEffect
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function Login() {
           <div className="login-card">
             <h2>Login</h2>
             <p>Glad you're back.!</p>
-            <form id="loginForm" action="#" method="post" onSubmit={validation}>
+            <form id="loginForm" method="post" onSubmit={handleValidation}>
               <div className="form-group">
                 <input
                   type="text"
