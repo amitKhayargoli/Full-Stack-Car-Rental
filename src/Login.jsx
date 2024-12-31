@@ -103,10 +103,8 @@ export default function Login() {
               </div>
               <div className="social-login">
                 <button type="button" className="social-btn google">
-                  Google
                 </button>
                 <button type="button" className="social-btn facebook">
-                  Facebook
                 </button>
               </div>
             </form>
