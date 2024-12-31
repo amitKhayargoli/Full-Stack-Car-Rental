@@ -95,7 +95,7 @@ export default function Signup() {
       slides[currentSlide].style.display = "block"; // Show the next slide
     };
 
-    // Change slides every 3 seconds
+    
     const intervalId = setInterval(showNextSlide, 3000);
 
     // Cleanup interval on component unmount
