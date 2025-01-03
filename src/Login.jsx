@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"; // Import Link
 import mustang from "./mustang.png";
 import thar from "./thar.png";
 import car from "./car.png";
+import Rollsroyce from "./rollsroyce.png"
 import "./Login.css";
 
 export default function Login() {
@@ -50,7 +51,7 @@ export default function Login() {
       slides[currentSlide].style.display = "block"; // Show the next slide
     };
 
-    const intervalId = setInterval(showNextSlide, 3000);
+    const intervalId = setInterval(showNextSlide, 2200);
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
@@ -130,6 +131,12 @@ export default function Login() {
             />
             <img
               src={thar}
+              className="slide"
+              style={{ display: "none" }}
+              alt="Thar"
+            />
+            <img
+              src={Rollsroyce}
               className="slide"
               style={{ display: "none" }}
               alt="Thar"
