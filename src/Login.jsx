@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom"; // Import Link
 import mustang from "./mustang.png";
 import thar from "./thar.png";
 import car from "./car.png";
+import Rollsroyce from "./rollsroyce.png"
 import "./Login.css";
 
 export default function Login() {
@@ -32,12 +34,10 @@ export default function Login() {
     });
 
     username.addEventListener("keydown", (event) => {
-      console.log(`${event.key}`);
       username_error.innerHTML = "";
     });
 
     password.addEventListener("keydown", (event) => {
-      console.log(`${event.key}`);
       password_error.innerHTML = "";
     });
   };
@@ -53,8 +53,7 @@ export default function Login() {
       slides[currentSlide].style.display = "block"; // Show the next slide
     };
 
-    // Change slides every 3 seconds
-    const intervalId = setInterval(showNextSlide, 3000);
+    const intervalId = setInterval(showNextSlide, 2200);
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
@@ -104,17 +103,13 @@ export default function Login() {
                 <span>Or</span>
               </div>
               <div className="social-login">
-                <button type="button" className="social-btn google">
-                  Google
-                </button>
-                <button type="button" className="social-btn facebook">
-                  Facebook
-                </button>
+                <button type="button" className="social-btn google"></button>
+                <button type="button" className="social-btn facebook"></button>
               </div>
             </form>
             <p className="signup-text">
-              Don't have an account? <a href="signUp.html">Signup</a>
-            </p>
+              Don't have an account? <Link to="/Signup">Signup</Link>
+            </p> {/* Use Link here */}
             <div className="footer-links">
               <a href="#">Terms & Conditions</a> |<a href="#">Support</a> |
               <a href="#">Customer Care</a>
@@ -141,6 +136,12 @@ export default function Login() {
               className="slide"
               style={{ display: "none" }}
               alt="Thar"
+            />
+            <img
+              src={Rollsroyce}
+              className="slide"
+              style={{ display: "none" }}
+              alt="Rollsroyce"
             />
           </div>
         </div>
