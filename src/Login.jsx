@@ -139,7 +139,7 @@ export default function Login() {
               src={Rollsroyce}
               className="slide"
               style={{ display: "none" }}
-              alt="Thar"
+              alt="Rollsroyce"
             />
           </div>
         </div>

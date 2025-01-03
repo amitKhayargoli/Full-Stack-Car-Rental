@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import mustang from "./mustang.png";
 import thar from "./thar.png";
 import car from "./car.png";
+import Rollsroyce from "./rollsroyce.png"
 import "./Signup.css";
 
 export default function Signup() {
@@ -93,7 +94,7 @@ export default function Signup() {
       slides[currentSlide].style.display = "block";
     };
 
-    const intervalId = setInterval(showNextSlide, 3000);
+    const intervalId = setInterval(showNextSlide, 2200);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -181,6 +182,12 @@ export default function Signup() {
               className="slide"
               style={{ display: "none" }}
               alt="Thar"
+            />
+             <img
+              src={Rollsroyce}
+              className="slide"
+              style={{ display: "none" }}
+              alt="Rollsroyce"
             />
           </div>
         </div>
