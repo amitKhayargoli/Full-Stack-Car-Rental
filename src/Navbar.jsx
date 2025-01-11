@@ -1,28 +1,28 @@
-import search from "./search.png";
-import notification from "./notification.png";
+import React from "react";
 
-function Navbar() {
+const Navbar = ({ showPlus, onPlusClick }) => {
   return (
     <div className="DashNav">
       <div className="fnav">
         <a>
           LO<span>DEX</span>
         </a>
-
         <div className="search">
           <input placeholder="search or type"></input>
-          {/* <img src={search}></img> */}
-          <i class="ri-search-line"></i>
+          <i className="ri-search-line"></i>
         </div>
       </div>
       <div className="snav">
-        {/* <img src={notification}></img> */}
-        <i class="ri-notification-line"></i>
-
+        <i className="ri-notification-line"></i>
+        {showPlus && (
+          <span className="plus-sign" onClick={onPlusClick}>
+            +
+          </span>
+        )}
         <p>profile</p>
       </div>
     </div>
   );
-}
+};
 
 export default Navbar;

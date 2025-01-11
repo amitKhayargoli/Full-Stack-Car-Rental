@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import mustang from "./mustang.png";
 import thar from "./thar.png";
 import car from "./car.png";
-import Rollsroyce from "./rollsroyce.png"
+import Rollsroyce from "./rollsroyce.png";
 import "./Signup.css";
 
 export default function Signup() {
@@ -106,7 +106,12 @@ export default function Signup() {
           <div className="signup-card">
             <h2>Signup</h2>
             <p>Join us and create your account!</p>
-            <form id="signupForm" action="#" method="post" onSubmit={validation}>
+            <form
+              id="signupForm"
+              action="#"
+              method="post"
+              onSubmit={validation}
+            >
               <div className="form-group">
                 <input
                   type="email"
@@ -183,7 +188,7 @@ export default function Signup() {
               style={{ display: "none" }}
               alt="Thar"
             />
-             <img
+            <img
               src={Rollsroyce}
               className="slide"
               style={{ display: "none" }}

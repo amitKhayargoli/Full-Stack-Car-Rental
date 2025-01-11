@@ -109,7 +109,7 @@ export default function Login() {
             </form>
             <p className="signup-text">
               Don't have an account? <Link to="/Signup">Signup</Link>
-            </p> {/* Use Link here */}
+            </p>
             <div className="footer-links">
               <a href="#">Terms & Conditions</a> |<a href="#">Support</a> |
               <a href="#">Customer Care</a>
