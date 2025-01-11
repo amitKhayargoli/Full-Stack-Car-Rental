@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import Sidebar from "./sidebar";
 
-import "./Dashboard.css";
+import "./Booking.css";
 const Settings = () => {
   return (
     <>
