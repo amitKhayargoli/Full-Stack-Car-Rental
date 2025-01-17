@@ -1,0 +1,292 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: #141A38;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.DashNav{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+.DashNav a{
+    color:yellow;
+    font-size: 25px;
+    font-weight: bold;
+}
+.DashNav span{
+    color:white;
+}
+
+.fnav{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+    
+}
+
+.fnav input{
+    outline: none;
+    background: none;
+    border-radius: 5px;
+    border-style: none;
+    padding: 10px;
+    height: 20px;
+    color: white;
+}
+
+.search{
+    background-color: #0C0C29;
+    border-radius: 5px;
+    align-items: center;
+    padding: 5px;   
+    padding-right: 15px; 
+    display: flex;
+    justify-content: space-around;
+}
+
+i{
+    color: #fff;
+    font-size: 26px;
+}
+
+.sidebar i{
+    color: #ffff00;
+    margin-right: 8px;
+}
+
+.search input{
+    font-size: 1.1em;
+}
+
+.snav{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    color: white;
+}
+
+.second{
+    color: white;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+.sidebar li{
+    height: 40px;
+    padding: 10px;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    font-size: 20px;
+
+}
+.sidebar li:hover{
+    background-color: #232947;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.booking,.settings{
+    background-color: #0C0C29;
+    color: white;
+    display: flex;
+    margin-left: 80px;
+    width: 100%;
+    padding: 10px;
+    padding-left: 30px;
+    border-radius: 5px;
+    flex-direction: column;
+
+}
+
+.cars{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+.card{
+    display: flex;
+    flex-direction: column;
+    background-color: #141A38;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.card a{
+    color: gray;
+    font-size: 10px;
+}
+#photo{
+    display: none;
+    
+}
+
+#file{
+    height: 20px;
+    border: 3px dashed #ffff00;
+    background-color: #141a37;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    padding: 100px;
+    font-size: 18px;
+    
+}
+.info{
+    display: flex;
+    flex-direction: column;
+    margin-right: 250px;
+    gap: 5px;
+}
+
+.info input{
+    width: 570px;
+    height: 35px;
+    background-color: #141a37;
+    outline: none;
+    border: 1px solid #ffffff2c;
+    color: #fff;
+    padding: 12px;
+
+}
+
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    
+    
+}
+
+.info label,p{
+    font-size: 1.2em;
+}
+
+h1,h2,p{
+    margin-bottom: 20px;
+}
+
+.choosePhoto{
+    background-color: #141a37;
+    border-radius: 20px;
+    padding: 50px;
+    align-items: center;
+
+}
+
+.choosePhoto button{
+    padding: 14px;
+    width: 150px;
+    border-radius: 25px;
+    background-color: #0c0c29;
+    color: #fff;
+    border: none;
+    font-weight: 400;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 12px;
+
+}
+#carImage {
+    display: none;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+.plus-sign {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1b1c2a;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    /* Set a proper width */
+    max-width: 90%;
+    /* Ensure it fits smaller screens */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    color: white;
+    /* Match dark theme */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.modal .form input,
+.modal .form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #333;
+    background: #1f2233;
+    /* Match theme */
+    color: white;
+}
+
+.modal .form button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modal .form button:hover {
+    background-color: #45a049;
+}
+
+.modal .info label {
+    display: block;
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.modal .info input {
+    box-sizing: border-box;
+}

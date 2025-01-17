@@ -7,7 +7,9 @@ import Rollsroyce from "./rollsroyce.png"
 import "./Login.css";
 
 export default function Login() {
-  function validation() {
+  const handleValidation = (e) => {
+    e.preventDefault();
+
     const loginForm = document.getElementById("loginForm");
     const username = document.getElementById("username");
     const password = document.getElementById("password");
@@ -38,7 +40,7 @@ export default function Login() {
     password.addEventListener("keydown", (event) => {
       password_error.innerHTML = "";
     });
-  }
+  };
 
   // Slideshow Functionality using useEffect
   useEffect(() => {
@@ -64,7 +66,7 @@ export default function Login() {
           <div className="login-card">
             <h2>Login</h2>
             <p>Glad you're back.!</p>
-            <form id="loginForm" action="#" method="post" onSubmit={validation}>
+            <form id="loginForm" method="post" onSubmit={handleValidation}>
               <div className="form-group">
                 <input
                   type="text"
@@ -107,7 +109,7 @@ export default function Login() {
             </form>
             <p className="signup-text">
               Don't have an account? <Link to="/Signup">Signup</Link>
-            </p> {/* Use Link here */}
+            </p>
             <div className="footer-links">
               <a href="#">Terms & Conditions</a> |<a href="#">Support</a> |
               <a href="#">Customer Care</a>
