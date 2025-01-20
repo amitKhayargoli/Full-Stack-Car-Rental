@@ -19,7 +19,7 @@ function LodeX() {
             <a>Home</a>
           </li>
           <li>
-            <a>Contact</a>
+            <a>About</a>
           </li>
           <li>
             <a>Service</a>
