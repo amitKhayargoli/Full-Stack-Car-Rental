@@ -1,3 +1,7 @@
+*{
+    padding: 0;
+    margin: 0;
+}
 
 body{
     /* background-color: #141A38; */
@@ -5,20 +9,19 @@ body{
 }
 
 
-.nav{
+.DashNav{
     padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
 }
-.nav a{
+.DashNav a{
     color:yellow;
     font-size: 25px;
     font-weight: bold;
 }
-
-.nav span{
+.DashNav span{
     color:white;
 }
 
@@ -49,6 +52,20 @@ body{
     justify-content: space-around;
 }
 
+i{
+    color: #fff;
+    font-size: 26px;
+}
+
+.sidebar i{
+    color: #ffff00;
+    margin-right: 8px;
+}
+
+.search input{
+    font-size: 1.1em;
+}
+
 .snav{
     display: flex;
     flex-direction: row;
@@ -70,6 +87,8 @@ body{
     justify-content: center;
     align-content: center;
     cursor: pointer;
+    font-size: 20px;
+
 }
 .sidebar li:hover{
     background-color: #232947;
@@ -77,7 +96,7 @@ body{
     height: 40px;
 }
 
-.booking{
+.booking,.settings{
     background-color: #0C0C29;
     color: white;
     display: flex;
@@ -87,6 +106,7 @@ body{
     padding-left: 30px;
     border-radius: 5px;
     flex-direction: column;
+
 }
 
 .cars{
@@ -107,8 +127,11 @@ body{
     color: gray;
     font-size: 10px;
 }
+#photo{
+    display: none;
+    
+}
 
-<<<<<<< HEAD
 #file{
     height: 20px;
     border: 3px dashed #ffff00;
@@ -176,96 +199,3 @@ h1,h2,p{
     margin-top: 12px;
 
 }
-#carImage {
-    display: none;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    background-color: #f0f0f0;
-}
-
-.plus-sign {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    cursor: pointer;
-    margin-left: auto;
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.modal-content {
-    background: #1b1c2a;
-    padding: 20px;
-    border-radius: 10px;
-    width: 500px;
-    /* Set a proper width */
-    max-width: 90%;
-    /* Ensure it fits smaller screens */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    color: white;
-    /* Match dark theme */
-}
-
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-}
-
-.modal .form input,
-.modal .form textarea {
-    width: 100%;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #333;
-    background: #1f2233;
-    /* Match theme */
-    color: white;
-}
-
-.modal .form button {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.modal .form button:hover {
-    background-color: #45a049;
-}
-
-.modal .info label {
-    display: block;
-    margin-bottom: 5px;
-    color: #ccc;
-}
-
-.modal .info input {
-    box-sizing: border-box;
-}
-=======
->>>>>>> amit
