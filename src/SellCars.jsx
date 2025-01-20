@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
-import Sidebar from "./Sidebar";
+import sidebar from "./Sidebar";
 
-import "./Dashboard.css";
+import "./Sellcar.css";
 
 const CarForm = () => {
   return (

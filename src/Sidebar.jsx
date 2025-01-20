@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-
 function Sidebar() {
- 
   return (
     <div className="sidebar">
       <a>

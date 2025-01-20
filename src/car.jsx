@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./Dashboard.css";
 import supra from "./supra.png";
 import porsche from "./porsche.png";
 import chevrolet from "./chevrolet.png";
