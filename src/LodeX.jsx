@@ -1,5 +1,10 @@
 import car from "./LandingPageCar.png";
 import "./LodeX.css";
+import about1 from "./LandingImg/vol.jpg";
+import about2 from "./LandingImg/speed.jpg";
+import about3 from "./LandingImg/mustang.jpg";
+import about4 from "./LandingImg/fordmustang.jpg";
+import Footer from "./Footer";
 function LodeX() {
   return (
     <div className="container">
@@ -28,18 +33,26 @@ function LodeX() {
             Login
           </a>
         </button>
+
+        {/* <div className="nav-close">
+          <i class="ri-close-large-line"></i>
+        </div>
+
+        <div className="nav-toggle">
+          <i class="ri-menu-line"></i>
+        </div> */}
       </div>
       <div className="body">
         <b>
-          <a className="first">YOU DREAM</a> <br />
+          <a className="first">You dream</a> <br />
           <a className="second">WE CREATE</a>
         </b>
-        <img src={car} />
+        <img src={car} className="HeroSectionCar" />
         <button className="btn1">Find your car</button>
       </div>
 
       <div class="icons-container">
-        <div class="icons">
+        <div class="icons icon1">
           <i class="fa-solid fa-house"></i>
           <div class="content">
             <h3>159+</h3>
@@ -47,7 +60,7 @@ function LodeX() {
           </div>
         </div>
 
-        <div class="icons">
+        <div class="icons icon2">
           <i class="fa-solid fa-car"></i>
           <div class="content">
             <h3>322+</h3>
@@ -55,7 +68,7 @@ function LodeX() {
           </div>
         </div>
 
-        <div class="icons">
+        <div class="icons icon3">
           <i class="fa-solid fa-users"></i>
           <div class="content">
             <h3>300+</h3>
@@ -63,7 +76,7 @@ function LodeX() {
           </div>
         </div>
 
-        <div class="icons">
+        <div class="icons icon4">
           <i class="fa-solid fa-car"></i>
           <div class="content">
             <h3>400+</h3>
@@ -71,7 +84,95 @@ function LodeX() {
           </div>
         </div>
       </div>
+
+      <div className="about-section">
+        <div className="about1">
+          <div className="about-img">
+            <img src={about1} alt="" />
+          </div>
+          <div className="about-text">
+            <h1 style={{ color: "white" }}>We are</h1>
+            <p style={{ color: "#888888" }}>
+              A company of Dedicated Professsionals with extensive experience in
+              car sales.
+            </p>
+          </div>
+        </div>
+
+        <div className="about2">
+          <div className="about-img">
+            <img src={about2} alt="" />
+          </div>
+          <div className="about-text">
+            <h1 style={{ color: "white" }}>Trusted Car Distributors</h1>
+            <p style={{ color: "#888888" }}>
+              We deal with the best car companies in the world.
+            </p>
+          </div>
+        </div>
+
+        <div className="about1">
+          <div className="about-img">
+            <img src={about4} alt="" />
+          </div>
+          <div className="about-text">
+            <h1 style={{ color: "white" }}>100+ Companies</h1>
+            <p style={{ color: "#888888" }}>
+              With over 100+ trusted car brands, we provide a wide range of
+              high-quality vehicles to suit every need.
+            </p>
+          </div>
+        </div>
+
+        <div className="about2">
+          <div className="about-img">
+            <img src={about3} alt="" />
+          </div>
+          <div className="about-text">
+            <h1 style={{ color: "white" }}>Fastest Cars Available</h1>
+            <p style={{ color: "#888888" }}>
+              Get ready to break speed limits with the fastest cars available in
+              the market.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <section>
+        <h1>Our Partners</h1>
+        <div className="slider">
+          <div className="slider-items">
+            <img
+              src="https://www.carlogos.org/car-logos/tesla-logo-2007-full-640.png"
+              alt=""
+            />
+            <img
+              src="https://www.carlogos.org/car-logos/ferrari-logo-2002-640.png"
+              alt=""
+            />
+            <img
+              src="https://www.carlogos.org/logo/Mercedes-Benz-logo.png"
+              alt=""
+            />
+            <img
+              src="https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png"
+              alt=""
+            />
+            <img
+              src="https://www.carlogos.org/car-logos/nissan-logo-2020-black-show.png"
+              alt=""
+            />
+            <img
+              src="https://www.carlogos.org/car-logos/jeep-logo-1993-640.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </section>
+
+      <Footer />
     </div>
   );
 }
+
 export default LodeX;
