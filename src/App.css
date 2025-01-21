@@ -3,6 +3,8 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  --primary-color: #181b3a;
+  --body-bg: #0b0c28;
 }
 
 .logo {

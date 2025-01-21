@@ -1,4 +1,4 @@
-import car from "./car.png";
+import car from "./LandingPageCar.png";
 import "./LodeX.css";
 function LodeX() {
   return (
