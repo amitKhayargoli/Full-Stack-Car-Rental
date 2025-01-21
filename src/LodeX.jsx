@@ -5,6 +5,7 @@ import about2 from "./LandingImg/speed.jpg";
 import about3 from "./LandingImg/mustang.jpg";
 import about4 from "./LandingImg/fordmustang.jpg";
 import Footer from "./Footer";
+import Testimonial from "./Testimonial";
 function LodeX() {
   return (
     <div className="container">
@@ -16,16 +17,16 @@ function LodeX() {
         </b>
         <ul>
           <li>
-            <a>Home</a>
+            <a href="#">Home</a>
           </li>
           <li>
-            <a>About</a>
+            <a href="#About">About</a>
           </li>
           <li>
-            <a>Service</a>
+            <a href="#Contact">Contact</a>
           </li>
           <li>
-            <a>Reviews</a>
+            <a href="#Reviews">Reviews</a>
           </li>
         </ul>
         <button className="login-btn">
@@ -85,7 +86,7 @@ function LodeX() {
         </div>
       </div>
 
-      <div className="about-section">
+      <div className="about-section" id="About">
         <div className="about1">
           <div className="about-img">
             <img src={about1} alt="" />
@@ -170,6 +171,7 @@ function LodeX() {
         </div>
       </section>
 
+      <Testimonial />
       <Footer />
     </div>
   );
