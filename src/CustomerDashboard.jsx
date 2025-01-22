@@ -7,26 +7,23 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
-    
-
 const CustomerDashboard = () => {
-    const navMenu = document.getElementById('nav-menu'),
-    navToggle = document.getElementById('nav-toggle'),
-    navClose = document.getElementById('nav-close')
+  const navMenu = document.getElementById("nav-menu"),
+    navToggle = document.getElementById("nav-toggle"),
+    navClose = document.getElementById("nav-close");
 
-    if(navToggle){
-        navToggle.addEventListener('click', ()=>{
-            navMenu.classList.add('show-menu')
-        })
-    }
-    if(navClose){
-        navClose.addEventListener('click', ()=>{
-            navMenu.classList.remove('show-menu')
-        })
-    }
+  if (navToggle) {
+    navToggle.addEventListener("click", () => {
+      navMenu.classList.add("show-menu");
+    });
+  }
+  if (navClose) {
+    navClose.addEventListener("click", () => {
+      navMenu.classList.remove("show-menu");
+    });
+  }
   return (
     <div className="CustomerDashboard">
-      
       <main className="main">
         <section className="home">
           <Swiper
@@ -138,24 +135,21 @@ const CustomerDashboard = () => {
             </SwiperSlide>
           </Swiper>
           <div className="home__interaction">
-                    <div className="home__social">
-                        <div className="home__social-border">
-                        </div>
-                            <a href="" target="_blank" className="home__social-link">
-                            <i class="ri-twitter-x-line"></i>
-                            </a>
-                            <a href="" target="_blank" className="home__social-link">
-                            <i class="ri-instagram-line"></i>
-                            </a>
-                            <a href="" target="_blank" className="home__social-link">
-                            <i class="ri-facebook-fill"></i>
-                            </a>
-                        
-                    </div>
+            <div className="home__social">
+              <div className="home__social-border"></div>
+              <a href="" target="_blank" className="home__social-link">
+                <i class="ri-twitter-x-line"></i>
+              </a>
+              <a href="" target="_blank" className="home__social-link">
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a href="" target="_blank" className="home__social-link">
+                <i class="ri-facebook-fill"></i>
+              </a>
+            </div>
 
-                    <div className="swiper-pagination"></div>
-
-                </div>
+            <div className="swiper-pagination"></div>
+          </div>
         </section>
       </main>
     </div>
