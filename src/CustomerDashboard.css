@@ -8,21 +8,21 @@
   --black-color: hsl(210, 8%, 8%);
 }
 
-* {
+.CustomerDashboard * {
   box-sizing: border-box;
   padding: 0;
-  margin: 0;
+  margin: 0 !important;
 }
 
 .CustomerDashboard {
   color: white;
 }
 
-a {
+.CustomerDashboard a {
   text-decoration: none;
 }
 
-img {
+.home_img {
   display: block;
   max-width: 100%;
   height: auto;
@@ -193,30 +193,43 @@ img {
   margin-bottom: 0.75rem;
 }
 
+.home{
+  position: relative;
+}
+
+
 /* Swiper */
-.swiper {
+.CustomerDashboard .swiper {
   height: 100vh;
 }
 
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-  top: 65%;
-  bottom: initial;
+
   display: flex;
   justify-content: center;
   column-gap: 0.5rem;
 }
 
+.swiper-pagination{
+  position: absolute !important;
+  top: calc(50% - 100px) !important;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: center; */
+}
+
 .swiper-pagination-bullet {
-  width: 2rem;
-  height: 2rem;
+  width: 2rem !important;
+  height: 2rem !important;
   font-size: 0.875rem;
   font-weight: 600;
   color: orange ;
-  opacity: 1;
-  display: flex;
+  opacity: 1 !important; 
+  display: flex !important;
   justify-content: center;
-  align-items: center;
-  background: none;
+  align-items: center ;
+  background: none !important;
 }
 
 .swiper-pagination-bullet-active {
@@ -226,4 +239,17 @@ img {
 .swiper-pagination-bullet:hover {
   background-color: var(--white-color);
   opacity: 0.8;
+}
+
+.car__green .home__button{
+  border: solid var(--green-color);
+}
+.car__green span{
+  color: var(--green-color);
+}
+.car__blue .home__button{
+  border: solid var(--blue-color);
+}
+.car__blue span{
+  color: var(--blue-color);
 }

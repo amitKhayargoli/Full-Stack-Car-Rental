@@ -147,9 +147,8 @@ const CustomerDashboard = () => {
                 <i class="ri-facebook-fill"></i>
               </a>
             </div>
-
-            <div className="swiper-pagination"></div>
           </div>
+          <div className="swiper-pagination"></div>
         </section>
       </main>
     </div>
