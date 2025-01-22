@@ -14,7 +14,8 @@
     "react-dom": "^18.2.0",
     "react-owl-carousel2": "^0.3.0",
     "react-router-dom": "^7.1.1",
-    "recharts": "^2.15.0"
+    "recharts": "^2.15.0",
+    "swiper": "^11.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
