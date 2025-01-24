@@ -5,7 +5,40 @@ import about2 from "./LandingImg/speed.jpg";
 import about3 from "./LandingImg/mustang.jpg";
 import about4 from "./LandingImg/fordmustang.jpg";
 import Footer from "./Footer";
+import { useRef } from "react";
+import { useEffect } from "react";
+
 function LodeX() {
+  const useScrollAnimation = (className) => {
+    const elementsRef = useRef([]);
+
+    useEffect(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+            } else {
+              entry.target.classList.remove("in-view");
+            }
+          });
+        },
+        { threshold: 0.1 } // Adjust threshold as needed
+      );
+
+      elementsRef.current.forEach((el) => el && observer.observe(el));
+
+      return () => {
+        elementsRef.current.forEach((el) => el && observer.unobserve(el));
+      };
+    }, []);
+
+    return elementsRef;
+  };
+
+  const aboutRef = useScrollAnimation("about-text");
+  // const Ref = useScrollAnimation("");
+
   return (
     <div className="container">
       <div className="nav">
@@ -14,7 +47,7 @@ function LodeX() {
             <span>LO</span>DEX
           </a>
         </b>
-        <ul>
+        <ul className="navbar-links">
           <li>
             <a>Home</a>
           </li>
@@ -85,7 +118,7 @@ function LodeX() {
         </div>
       </div>
 
-      <div className="about-section">
+      <div className="about-section" ref={(el) => (aboutRef.current[0] = el)}>
         <div className="about1">
           <div className="about-img">
             <img src={about1} alt="" />
@@ -140,32 +173,51 @@ function LodeX() {
 
       <section>
         <h1>Our Partners</h1>
-        <div className="slider">
-          <div className="slider-items">
-            <img
-              src="https://www.carlogos.org/car-logos/tesla-logo-2007-full-640.png"
-              alt=""
-            />
-            <img
-              src="https://www.carlogos.org/car-logos/ferrari-logo-2002-640.png"
-              alt=""
-            />
-            <img
-              src="https://www.carlogos.org/logo/Mercedes-Benz-logo.png"
-              alt=""
-            />
-            <img
-              src="https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png"
-              alt=""
-            />
-            <img
-              src="https://www.carlogos.org/car-logos/nissan-logo-2020-black-show.png"
-              alt=""
-            />
-            <img
-              src="https://www.carlogos.org/car-logos/jeep-logo-1993-640.png"
-              alt=""
-            />
+        <div
+          className="slider"
+          style={{
+            "--width": "100px",
+            "--height": "100px",
+            "--quantity": "6",
+          }}
+        >
+          <div className="list">
+            <div className="item" style={{ "--position": 1 }}>
+              <img
+                src="https://www.carlogos.org/car-logos/tesla-logo-2007-full-640.png"
+                alt=""
+              />
+            </div>
+            <div className="item" style={{ "--position": 2 }}>
+              <img
+                src="https://www.carlogos.org/car-logos/ferrari-logo-2002-640.png"
+                alt=""
+              />
+            </div>
+            <div className="item" style={{ "--position": 3 }}>
+              <img
+                src="https://www.carlogos.org/logo/Mercedes-Benz-logo.png"
+                alt=""
+              />
+            </div>
+            <div className="item" style={{ "--position": 4 }}>
+              <img
+                src="https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png"
+                alt=""
+              />
+            </div>
+            <div className="item" style={{ "--position": 5 }}>
+              <img
+                src="https://www.carlogos.org/car-logos/nissan-logo-2020-black-show.png"
+                alt=""
+              />
+            </div>
+            <div className="item" style={{ "--position": 6 }}>
+              <img
+                src="https://www.carlogos.org/car-logos/jeep-logo-1993-640.png"
+                alt=""
+              />
+            </div>
           </div>
         </div>
       </section>
