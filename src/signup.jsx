@@ -147,9 +147,7 @@ export default function Signup() {
                   placeholder="Confirm Password"
                 />
               </div>
-              <button type="submit" className="submit-btn">
-                Signup
-              </button>
+              <button className="submit-btn">Signup</button>
               <div className="divider">
                 <span>Or</span>
               </div>
