@@ -156,7 +156,7 @@ h1,h2,p{
 }
 
 .info input[type="color"] {
-    width: 100px;
+    width: 150px;
     height: 55px;
     border: none;
     border-radius: 5px;
