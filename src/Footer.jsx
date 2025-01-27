@@ -3,7 +3,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <footer>
-      <div className="footer-container">
+      <div className="footer-container" id="Contact">
         <div className="footer-section footer-motto">
           <a className="lo" style={{ fontWeight: "bold" }}>
             <span>LO</span>DEX
