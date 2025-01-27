@@ -65,9 +65,7 @@ h1,h2,p{
     margin-top: 12px;
 
 }
-#carImage {
-    display: none;
-}
+
 
 .navbar {
     display: flex;

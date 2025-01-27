@@ -15,11 +15,10 @@ const CarForm = () => {
         </div>
 
         <div className="info">
-          <label htmlFor="carPlate">Car Number Plate</label>
+          <label htmlFor="carColor">Car Color</label>
           <input
-            type="text"
-            id="carPlate"
-            placeholder="Enter car number plate"
+            type="color"
+            id="carColor"
           />
         </div>
 
