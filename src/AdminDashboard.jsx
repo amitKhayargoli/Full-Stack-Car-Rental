@@ -1,4 +1,4 @@
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import "./Booking.css";
 import "./AdminDashboard.css";
