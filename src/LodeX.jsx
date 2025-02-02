@@ -49,7 +49,12 @@ function LodeX() {
           <a className="second">WE CREATE</a>
         </b>
         <img src={car} className="HeroSectionCar" />
-        <button className="btn1">Find your car</button>
+        <button className="btn1">
+          {" "}
+          <a style={{ color: "black" }} href="/CustomerDashboard">
+            Find your car
+          </a>
+        </button>
       </div>
 
       <div class="icons-container">

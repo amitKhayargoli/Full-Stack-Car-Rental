@@ -3,19 +3,26 @@ import { useNavigate } from "react-router-dom";
 function Sidebar() {
   return (
     <div className="sidebar">
-      <a>
-        <li>Dashboard</li>
+      <a href="AdminDashboard">
+        <li>
+          <i class="ri-dashboard-fill"></i>Dashboard
+        </li>
       </a>
-      <a>
+      <a href="Booking">
         <li>
           <i class="ri-taxi-line"></i>Booking
         </li>
       </a>
-      <a>
-        <li>Sell Cars</li>
+      <a href="Car">
+        <li>
+          <i class="ri-settings-3-line"></i>SellCars
+        </li>
       </a>
-      <a>
-        <li>Settings</li>
+      <a href="Settings">
+        <li>
+          <i class="ri-settings-3-line"></i>
+          Settings
+        </li>
       </a>
     </div>
   );

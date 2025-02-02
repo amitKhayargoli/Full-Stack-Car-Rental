@@ -7,6 +7,7 @@ import Sales from "./SellCars";
 import Car from "./car";
 import Booking from "./Booking";
 import AdminDashboard from "./AdminDashboard";
+import CustomerDashboard from "./CustomerDashboard";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Car" element={<Car />} />
         <Route path="/Booking" element={<Booking />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/CustomerDashboard" element={<CustomerDashboard />} />
       </Routes>
     </BrowserRouter>
   );
