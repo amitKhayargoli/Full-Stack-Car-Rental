@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 
 import "./Booking.css";
 const Settings = () => {

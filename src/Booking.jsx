@@ -2,7 +2,7 @@ import "./Booking.css";
 import supra from "./supra.png";
 import porsche from "./porsche.png";
 import chevrolet from "./chevrolet.png";
-import Sidebar from "./sidebar";
+import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 
 const Dashboard = () => {
