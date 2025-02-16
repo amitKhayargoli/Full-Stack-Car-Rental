@@ -56,7 +56,17 @@ export default function Login() {
         if (response.data && response.data.data.access_token) {
           console.log("Access Token:", response.data.data.access_token);
           localStorage.setItem("token", response.data.data.access_token); // ✅ Store Token
-          navigate("/AdminDashboard"); // ✅ Redirect to Dashboard
+
+          localStorage.setItem("role", response.data.data.role); //Storing role
+          localStorage.setItem("userId", response.data.data.userId); //Storing userId
+
+          console.log(response.data.data.role);
+          if (response.data.data.role == "user") {
+            //Add client and Admin navigate to Dashboard
+            navigate("/Client"); // ✅ Redirect to Dashboard
+          } else if (response.data.data.role == "admin") {
+            navigate("/Admin");
+          }
         } else {
           alert("Login failed! Check credentials.");
         }

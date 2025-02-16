@@ -40,10 +40,6 @@ const ClientSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
     { name: "Contact", icon: <Mail className={iconClassNames} /> },
     { name: "Favorites", icon: <Bookmark className={iconClassNames} /> },
     { name: "Active Bids", icon: <History className={iconClassNames} /> },
-    {
-      name: "Transaction",
-      icon: <CircleDollarSign className={iconClassNames} />,
-    },
 
     {
       name: "Costumer Review",

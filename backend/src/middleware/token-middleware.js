@@ -9,13 +9,24 @@ function authenticateToken(req, res, next) {
     return next();
   }
 
-  // if (req.path === "/Car") {
-  //   return next();
-  // }
+  if (req.path === "/api/user") {
+    return next();
+  }
+
+  if (req.path === "/api/userProfile") {
+    return next();
+  }
 
   // Get token from Authorization header
-  const token = req.header("Authorization")?.split(" ")[1];
+  // const token = req.header("Authorization")?.split(" ")[1];
+  // console.log("Token2222222222222:", token);
+
+  const authorizationHeader = req.header("Authorization");
+  console.log("Authorization Header:", authorizationHeader);
+
+  const token = authorizationHeader?.split(" ")[1];
   console.log("Token:", token);
+
   if (!token) {
     return res
       .status(401)

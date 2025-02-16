@@ -107,13 +107,13 @@ i{
 }
 
 .booking,.settings{
-    background-color: #0C0C29;
+    background-color: #000000;
     color: white;
     display: flex;
     /* margin-left: 80px; */
     width: 100%;
     padding: 10px;
-    padding-left: 60px;
+    padding-left: 20px;
     border-radius: 5px;
     flex-direction: column;
     min-height: 100vh;

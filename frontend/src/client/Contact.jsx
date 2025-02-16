@@ -33,7 +33,7 @@ const Contact = () => {
                 className={iconClassNames}
                 size={25}
               ></Phone>
-              <h1 className="dark:text-white">+9779841994605</h1>
+              <h1 className="dark:text-white">+9779824568385</h1>
             </div>
 
             <div className="flex">

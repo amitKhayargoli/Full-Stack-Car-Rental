@@ -2,10 +2,17 @@ import axios from "axios";
 import { Bookmark, BookmarkIcon, Heart } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-const Search = () => {
+const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
   const textClassNames = "dark:text-gray-50";
 
   const [cars, setCars] = useState([]);
+
+  const [query, setQuery] = useState("");
+  const [filteredcars, setFilteredCars] = useState([]);
+
+  const typeArray = ["Auto", "Fuel"];
+
+  const [brandArray, setBrandArray] = useState([]);
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -15,12 +22,58 @@ const Search = () => {
 
         const carData = response.data.data;
         setCars(carData);
+        setFilteredCars(carData);
+
+        const brand = carData.map((car) => car.brand);
+
+        setBrandArray(brand);
       } catch (error) {
         console.error("Error fetching cars:", error);
       }
     };
     fetchCars();
   }, []);
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setQuery(value);
+
+    const filtered = cars.filter((item) =>
+      item.model.toLowerCase().includes(value)
+    );
+
+    setFilteredCars(filtered);
+
+    console.log(filteredcars);
+    console.log(filtered);
+  };
+
+  const handleFilterBrand = (e) => {
+    const value = e.target.value.toLowerCase();
+    setQuery("");
+
+    const filtered = cars.filter((item) =>
+      item.brand.toLowerCase().includes(value)
+    );
+
+    setFilteredCars(filtered);
+
+    console.log(filteredcars);
+    console.log(filtered);
+  };
+
+  const handleFilterType = (e) => {
+    const value = e.target.value.toLowerCase();
+
+    const filtered = cars.filter((item) =>
+      item.type.toLowerCase().includes(value)
+    );
+
+    setFilteredCars(filtered);
+
+    console.log(filteredcars);
+    console.log(filtered);
+  };
 
   return (
     <div className="w-full h-[100vh] bg-[#f9f9f9] dark:bg-black !px-8 !py-5">
@@ -39,11 +92,13 @@ const Search = () => {
             className="text-[12px] xl:text-[16px] focus:outline-none bg-white drop-shadow-xl h-10 !p-3 !px-2"
             name=""
             id=""
+            onChange={handleFilterType}
           >
-            <option value="">All Cars</option>
-            <option value="">All Cars</option>
-            <option value="">All Cars</option>
-            <option value="">All Cars</option>
+            {typeArray.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex-2">
@@ -53,16 +108,20 @@ const Search = () => {
             className="text-[12px] xl:text-[16px] focus:outline-none bg-white drop-shadow-xl w-full h-10 !p-3 !px-2"
             name=""
             id=""
+            onChange={handleFilterBrand}
           >
-            <option value="">All Cars</option>
-            <option value="">All Cars</option>
-            <option value="">All Cars</option>
-            <option value="">All Cars</option>
+            {brandArray.map((brands) => (
+              <option value={brands} key={brands}>
+                {brands}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex-3">
           <h1 className={textClassNames}>Search</h1>
           <input
+            value={query}
+            onChange={handleSearch}
             placeholder="Search by Model "
             className="text-[12px] xl:text-[16px] focus:outline-none bg-white drop-shadow-xl w-full h-10 !p-3 !px-4"
           />
@@ -70,24 +129,27 @@ const Search = () => {
       </div>
 
       <div className="!mt-6 bg-white h-[550px] rounded-2xl xl:!p-5 dark:bg-black dark:text-white">
-        <h1 className="font-bold text-xl">270 Cars found</h1>
+        {/* <h1 className="font-bold text-xl">270 Cars found</h1> */}
 
         {/* Car Section */}
 
         <div className="flex gap-6 w-full flex-wrap">
           {/* Car Card */}
-          {cars.map((car) => (
-            <div className="!p-3 bg-[#f9f9f9] w-[45%] sm:max-w-[30%] min-md:w-[22.5%]  dark:bg-gray-500 rounded-xl">
+          {filteredcars.map((car) => (
+            <div
+              className={` flex flex-col !p-3 bg-[#f9f9f9] w-[45%] sm:max-w-[30%] min-md:w-[22.5%]  dark:bg-gray-500 rounded-xl`}
+            >
               <img
-                className="w-full object-cover "
+                className="object-contain flex flex-1 "
                 alt="car Image"
                 src={car.carImageURL}
                 // src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?cs=srgb&dl=pexels-pixabay-210019.jpg&fm=jpg"
-                // src="https://pngimg.com/d/porsche_PNG10622.png"
               />
 
-              <div className="flex justify-between items-center xl:!ml-2 !mb-3">
-                <h1 className="font-bold text-sm xl:text-xl">{car.model}</h1>
+              <div className="flex justify-between items-center !mb-3">
+                <h1 className="font-bold text-sm xl:text-[18px]">
+                  {car.model}
+                </h1>
                 <button>
                   <BookmarkIcon />
                 </button>
@@ -95,8 +157,8 @@ const Search = () => {
 
               <div className="flex flex-wrap text-[13px] xl:text-sm gap-2 xl:gap-2 xl:justify-around">
                 <div>
-                  Brand:
-                  <b>{car.brand}</b>
+                  Speed:
+                  <b>{car.speed}</b>
                 </div>
                 <div>
                   Type:

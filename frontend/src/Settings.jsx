@@ -1,11 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Booking.css";
 import uploadFile from "./components/UploadFile";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Settings = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
+  const Id = localStorage.getItem("userId");
+  const [userId, setUserId] = useState(Id);
   const [fileName, setFileName] = useState("");
+
+  const [userData, setUserData] = useState(null);
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId"); // ✅ Get userId from localStorage
+    if (storedUserId) {
+      setUserId(storedUserId);
+      fetchUserProfile(storedUserId);
+    }
+  }, []);
+
+  const fetchUserProfile = async (userId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/userProfile/${userId}`
+      );
+      const { data } = response.data;
+
+      setUserData(data);
+
+      setValue("username", data.user.username);
+      setValue("email", data.user.email);
+      setValue("role", data.user.role);
+      setValue("address", data.address);
+      setValue("phoneNumber", data.phoneNumber);
+      setValue("gender", data.gender);
+      setValue("dateOfBirth", data.dateOfBirth);
+      setValue("profilePictureURL", data.profilePictureURL);
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
@@ -13,7 +57,27 @@ const Settings = () => {
       setSelectedFile(file);
       setFileName(file.name);
       // const previewURL = URL.createObjectURL(file);
-      setCarData({ ...carData, carImageURL: previewURL });
+    }
+  };
+
+  const onSubmit = async (formData) => {
+    console.log("Form Data Submitted:", formData);
+    try {
+      if (userData) {
+        await axios.put(
+          `http://localhost:5000/api/userProfile/${userId}`,
+          formData
+        );
+        alert("Profile updated successfully!");
+      } else {
+        await axios.post(`http://localhost:5000/api/userProfile`, {
+          userId,
+          ...formData,
+        });
+        alert("Profile created successfully!");
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
     }
   };
   return (
@@ -24,13 +88,16 @@ const Settings = () => {
           <h2>Profile</h2>
           <p>Update your profile here</p>
 
-          <form action="submit" className="form">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="form flex flex-wrap"
+          >
             <div className="flex-1 flex flex-col gap-5">
               <div className="info">
                 <label htmlFor="address" id="address">
                   Address
                 </label>
-                <input type="text" id="address" />
+                <input type="text" id="address" {...register("address")} />
               </div>
 
               <div className="info">
@@ -38,14 +105,14 @@ const Settings = () => {
                   Email
                 </label>
 
-                <input type="text" />
+                <input type="text" {...register("email")} />
               </div>
 
               <div className="info">
                 <label htmlFor="" id="phoneNo">
                   Phone Number
                 </label>
-                <input type="text" />
+                <input type="text" {...register("phoneNumber")} />
               </div>
 
               <div className="info">
@@ -53,12 +120,17 @@ const Settings = () => {
                   Gender
                 </label>
 
-                <input type="text" id="gender" placeholder="Male" />
+                <input
+                  type="text"
+                  id="gender"
+                  {...register("gender")}
+                  placeholder="Male"
+                />
               </div>
 
               <div className="info">
                 <label htmlFor="dob">Date of birth</label>
-                <input type="date" id="dob" />
+                <input type="date" id="dob" {...register("dateOfBirth")} />
               </div>
             </div>
 
@@ -88,6 +160,7 @@ const Settings = () => {
                     id="carImage"
                     class="hidden"
                     accept="image/*"
+                    {...register("profilePictureURL")}
                     onChange={handleImageUpload}
                   />
                 </label>
@@ -98,6 +171,12 @@ const Settings = () => {
 
                 {fileName && <p>{fileName}</p>}
               </div>
+              <button
+                type="submit"
+                className="flex bg-[#3e3ea8]  transition-all duration-400 ease-in hover:bg-[#4848c7] text-white text-base !px-5 !py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
+              >
+                Submit
+              </button>
             </div>
           </form>
         </div>

@@ -1,6 +1,15 @@
-import React from "react";
-import { Menu, Moon, Sun, Search, Link, Settings } from "lucide-react";
+import React, { useState } from "react";
+import {
+  Menu,
+  Moon,
+  Sun,
+  Search,
+  Link,
+  Settings,
+  StoreIcon,
+} from "lucide-react";
 import AccountMenu from "./AccountMenu";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({
   isSidebarCollapsed,
@@ -8,11 +17,14 @@ const Navbar = ({
   isDarkMode,
   toggleDarkMode,
 }) => {
-  console.log("Sidebar COllapsed?" + isSidebarCollapsed); // This will show if the sidebar is collapsed or not
+  const userRole = localStorage.getItem("role");
+
+  const isUser = userRole == "user";
+
   // console.log(isDarkMode);
   return (
     <div
-      className={`w-full h-25 flex items-center justify-between bg-[#f9f9f9] px-4 py-3 dark:bg-black transition-all duration-300 
+      className={`xl:w-full full h-25 flex items-center justify-between bg-[#f9f9f9] px-4 py-3 dark:bg-black transition-all duration-300 
  border-b-[0.5px] border-b-gray-200 dark:border-gray-800`}
     >
       <div className="!ml-4 flex items-center">
@@ -43,7 +55,14 @@ const Navbar = ({
       </div>
 
       {/* Theme Toggle and Settings */}
-      <div className="flex items-center gap-2 !mr-2">
+      <div className="flex items-center gap-4 !mr-2">
+        {isUser ? (
+          <a href="/Garage">
+            <StoreIcon className="text-black dark:text-white cursor-pointer"></StoreIcon>
+          </a>
+        ) : (
+          ""
+        )}
         <button
           onClick={toggleDarkMode}
           className={`rounded p-2 ${

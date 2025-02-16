@@ -46,4 +46,29 @@ const getAllCars = async (req, res) => {
   }
 };
 
-module.exports = { addCar, getAllCars };
+const updateCarBookingStatus = async (req, res) => {
+  try {
+    const carId = req.params.id;
+    const { bookingStatus } = req.body;
+
+    const car = await Car.update(
+      { bookingStatus },
+      {
+        where: { carId: carId },
+      }
+    );
+
+    if (car[0] === 0) {
+      return res.status(404).send({ message: "Car not found" });
+    }
+
+    res
+      .status(200)
+      .send({ message: "Car booking status updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Failed to update the car booking status" });
+  }
+};
+
+module.exports = { addCar, getAllCars, updateCarBookingStatus };

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import mustang from "./img/mustang.png";
@@ -8,19 +8,16 @@ import car from "./img/car.png";
 import Rollsroyce from "./img/rollsroyce.png";
 import "./Signup.css";
 import * as Yup from "yup";
-
+import axios from "axios";
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
   username: Yup.string()
-    .matches(/^[a-zA-Z0-9_]{5,15}$/, "Username must be 5-15 characters long")
+    .matches(/^[a-zA-Z0-9_]{4,15}$/, "Username must be 4-15 characters long")
     .required("Username is required"),
   password: Yup.string()
-    .matches(
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,14}$/,
-      "Password must be 8-14 characters"
-    )
+    .min(6, "Password must be at least 6 characters long")
     .required("Password is required"),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref("password"), null], "Passwords do not match")
@@ -28,6 +25,7 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Signup() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -36,15 +34,34 @@ export default function Signup() {
     resolver: yupResolver(validationSchema),
   });
 
-  const onSubmit = (data) => {
-    const userData = {
-      email: data.email,
-      username: data.username,
-      password: data.password,
-    };
+  const onSubmit = async (data) => {
+    console.log("Signup with:", data);
 
-    localStorage.setItem("userData", JSON.stringify(userData));
-    alert("Signup successful! Your data has been saved to local storage.");
+    axios
+      .post("http://localhost:5000/api/user", data, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        // Log the entire response to inspect the structure
+        console.log("Login Response:", response.data);
+
+        // Check if access_token exists inside response.data
+        if (response.data) {
+          console.log("Created user email:", response.data.email);
+
+          navigate("/login"); // ✅ Redirect to Login
+        } else {
+          alert("Login failed! Check credentials.");
+        }
+      })
+      .catch((error) => {
+        console.error("Error signup:", error);
+        alert("Error creating account. Please try again.");
+      });
+
+    reset();
   };
 
   useEffect(() => {

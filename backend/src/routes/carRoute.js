@@ -7,4 +7,6 @@ router.post("/", carController.addCar);
 
 router.get("/", carController.getAllCars);
 
+router.put("/updateCarBookingStatus/:id", carController.updateCarBookingStatus);
+
 module.exports = router;

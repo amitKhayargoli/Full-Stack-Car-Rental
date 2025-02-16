@@ -18,7 +18,7 @@ html{
 }
 
 body{
-    background-color: #212121;
+    background-color: black;
 }
 span{
     color:#F6C028;
@@ -26,32 +26,75 @@ span{
 .lo{
     position: relative;
     color:white;
-    font-size:20px;
+    font-size:25px;
 }
-.nav{
+
+.container{
+    position: relative;
+}
+
+
+
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    margin-top: 40px;
-    margin-bottom: 120px;
-
-    
-
+    align-items: center;
+    padding: 20px 0;
+    background: black;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
+
 
 .nav ul{
     display: flex;
     list-style: none;
 }
-.nav li{
+/* .nav li{
     margin-left: 50px;
     color: white;
+    font-size: 1.1em;
+} */
+
+
+.nav li {
+    position: relative;
+    margin-left: 50px;
+    color: white;
+    font-size: 1.1em;
+    cursor: pointer;
+    list-style: none; 
+}
+
+
+
+.nav li::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background-color: #F6C028;
+    transition: width 0.3s ease-in-out;
+}
+
+
+
+.nav li:hover::after {
+    width: 100%;
 }
 .nav button{
     background-color: #F6C028;
     color: white;
     width: 80px;
-    padding: 10px;
-    border-radius: 15px;
+    padding: 8px;
+    border-radius: 12px;
     border: none;
 }
 
@@ -61,15 +104,11 @@ span{
     background-color: #F6C028;
 }
 
-
-
 .body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align:center;
     color: white;
-    padding-top: 40px;
 }
 .body .first{
     font-size:60px;
@@ -280,7 +319,7 @@ section h1 {
 }
 
 .slider-items {
-    display: inline-block;
+    display: flex;
     gap: 20px;
     animation: scrolling 35s linear infinite;
 

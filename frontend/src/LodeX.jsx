@@ -6,6 +6,7 @@ import about3 from "./LandingImg/mustang.jpg";
 import about4 from "./LandingImg/fordmustang.jpg";
 import Footer from "./Footer";
 import Testimonial from "./Testimonial";
+import BackgroundVideo from "./BackgroundVideo";
 function LodeX() {
   return (
     <div className="container">
@@ -44,20 +45,10 @@ function LodeX() {
         </div> */}
       </div>
       <div className="body">
-        <b>
-          <a className="first">You dream</a> <br />
-          <a className="second">WE CREATE</a>
-        </b>
-        <img src={car} className="HeroSectionCar" />
-        <button className="btn1">
-          {" "}
-          <a style={{ color: "black" }} href="/CustomerDashboard">
-            Find your car
-          </a>
-        </button>
+        <BackgroundVideo></BackgroundVideo>
       </div>
 
-      <div class="icons-container">
+      {/* <div class="icons-container">
         <div class="icons icon1">
           <i class="fa-solid fa-house"></i>
           <div class="content">
@@ -89,7 +80,7 @@ function LodeX() {
             <p>new cars</p>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="about-section" id="About">
         <div className="about1">
@@ -162,10 +153,6 @@ function LodeX() {
             />
             <img
               src="https://www.carlogos.org/car-logos/lamborghini-logo-1998-640.png"
-              alt=""
-            />
-            <img
-              src="https://www.carlogos.org/car-logos/nissan-logo-2020-black-show.png"
               alt=""
             />
             <img

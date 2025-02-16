@@ -32,7 +32,7 @@ const CustomerReviews = () => {
           placeholder="Add your testimonial here"
         ></textarea>
 
-        <Button></Button>
+        <Button title="Add Review"></Button>
       </form>
     </div>
   );

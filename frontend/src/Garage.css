@@ -102,7 +102,7 @@
 }
 
 .home__subtitle {
-  font-size: 2rem;
+  font-size:3rem;
   font-family: "Dancing Script", cursive;
 }
 
@@ -112,9 +112,9 @@
 
 .home__img {
   max-width: initial;
-  width: 400px;
+  width: 600px;
   position: absolute;
-  bottom: -7.5rem;
+  bottom: -12.5rem;
   left: 0;
   transform: translateX(10rem);
   opacity: 0;
@@ -144,6 +144,8 @@
 .home__button {
   display: inline-flex;
   justify-self: center;
+  position: relative;
+  z-index: 221220;
   align-items: center;
   column-gap: 0.5rem;
   border: 2px solid var(--orange-color);

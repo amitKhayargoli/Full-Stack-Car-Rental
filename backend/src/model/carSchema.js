@@ -19,7 +19,7 @@ const Car = sequelize.define("Car", {
   },
 
   color: {
-    type: DataTypes.STRING, // Store Hex Code
+    type: DataTypes.STRING,
     allowNull: false,
   },
   price: {

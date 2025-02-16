@@ -19,7 +19,7 @@
 .info input{
     /* width: 550px; */
     height: 35px;
-    background-color: #141a37;
+    /* background-color: #141a37; */
     outline: none;
     border: 1px solid #ffffff2c;
     /* color: #fff; */
@@ -175,3 +175,11 @@
 }
 
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); /* Inverts the colors to make the icon white */
+  }
+  
+  /* For Mozilla Firefox */
+  input[type="date"]::-moz-focus-inner {
+    border: 0;
+  }

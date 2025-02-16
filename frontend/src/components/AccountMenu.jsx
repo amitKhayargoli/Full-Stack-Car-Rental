@@ -12,7 +12,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-
+import axios from "axios";
+import { useEffect, useState } from "react";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -20,11 +21,35 @@ const darkTheme = createTheme({
 });
 
 export default function AccountMenu() {
+  const [image, setImage] = useState("");
   const navigate = useNavigate();
 
-  const HandleLogout = () => {
+  useEffect(() => {
+    const storedUserId = localStorage.getItem("userId");
+    if (storedUserId) {
+      fetchUserProfile(storedUserId);
+    }
+  }, []);
+
+  const fetchUserProfile = async (userId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/userProfile/${userId}`
+      );
+
+      if (response.data.data.profilePictureURL) {
+        setImage(response.data.data.profilePictureURL);
+      }
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
+
+  const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/Login");
+
+    setImage("");
   };
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,6 +60,7 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <ThemeProvider theme={darkTheme}>
       <React.Fragment>
@@ -50,9 +76,11 @@ export default function AccountMenu() {
               aria-haspopup="true"
               aria-expanded={open ? "true" : undefined}
             >
-              <Avatar sx={{ width: 32, height: 32, bgcolor: "#7366ff" }}>
-                M
-              </Avatar>
+              <Avatar
+                sx={{ width: 32, height: 32, bgcolor: "#7366ff" }}
+                src={`/${image}`}
+                alt="Profile"
+              />
             </IconButton>
           </Tooltip>
         </Box>
@@ -62,33 +90,31 @@ export default function AccountMenu() {
           open={open}
           onClose={handleClose}
           onClick={handleClose}
-          slotProps={{
-            paper: {
-              elevation: 0,
-              sx: {
-                overflow: "visible",
-                filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
-                mt: 1.5,
-                bgcolor: "background.default",
-                "& .MuiAvatar-root": {
-                  width: 32,
-                  height: 32,
-                  ml: -0.5,
-                  mr: 1,
-                  bgcolor: "primary.main",
-                },
-                "&::before": {
-                  content: '""',
-                  display: "block",
-                  position: "absolute",
-                  top: 0,
-                  right: 14,
-                  width: 10,
-                  height: 10,
-                  bgcolor: "background.paper",
-                  transform: "translateY(-50%) rotate(45deg)",
-                  zIndex: 0,
-                },
+          PaperProps={{
+            elevation: 0,
+            sx: {
+              overflow: "visible",
+              filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+              mt: 1.5,
+              bgcolor: "background.default",
+              "& .MuiAvatar-root": {
+                width: 32,
+                height: 32,
+                ml: -0.5,
+                mr: 1,
+                bgcolor: "primary.main",
+              },
+              "&::before": {
+                content: '""',
+                display: "block",
+                position: "absolute",
+                top: 0,
+                right: 14,
+                width: 10,
+                height: 10,
+                bgcolor: "background.paper",
+                transform: "translateY(-50%) rotate(45deg)",
+                zIndex: 0,
               },
             },
           }}
@@ -96,7 +122,12 @@ export default function AccountMenu() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose}>
-            <Avatar sx={{ bgcolor: "#7366ff" }} /> My account
+            <Avatar
+              sx={{ bgcolor: "#7366ff" }}
+              src={`/${image}`}
+              alt="Profile"
+            />{" "}
+            My account
           </MenuItem>
           <Divider />
           <MenuItem
@@ -113,7 +144,7 @@ export default function AccountMenu() {
           <MenuItem
             onClick={() => {
               handleClose();
-              navigate("/Settings");
+              navigate("settings");
             }}
           >
             <ListItemIcon>
@@ -124,7 +155,7 @@ export default function AccountMenu() {
           <MenuItem
             onClick={() => {
               handleClose();
-              HandleLogout();
+              handleLogout();
             }}
           >
             <ListItemIcon>

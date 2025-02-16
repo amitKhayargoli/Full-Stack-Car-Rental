@@ -32,8 +32,8 @@ const CarForm = () => {
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
-      // const previewURL = URL.createObjectURL(file);
-      setCarData({ ...carData, carImageURL: previewURL });
+
+      setCarData(carData);
     }
   };
 
@@ -45,7 +45,7 @@ const CarForm = () => {
 
       // 🔹 Upload file if selected
       if (selectedFile) {
-        const formData = new FormData();
+        const formData = new FormData(); // Create new FormData
         formData.append("file", selectedFile);
 
         const uploadResponse = await axios.post(
@@ -55,7 +55,7 @@ const CarForm = () => {
         );
 
         console.log("Upload Response:", uploadResponse.data);
-        imageUrl = uploadResponse.data.fileUrl;
+        imageUrl = "http://localhost:5000/" + uploadResponse.data.file.path;
         if (!imageUrl) {
           throw new Error("File URL is missing from response");
         }
