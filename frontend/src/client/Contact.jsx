@@ -1,8 +1,28 @@
 import { Mail, MapPin, Phone, User2 } from "lucide-react";
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const iconClassNames = "text-black dark:text-white !ml-1 !mr-2";
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_hllio1c", "template_dxx8mxi", form.current, {
+        publicKey: "2GdlRlqRBknuC2MzC",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
   return (
     <div className=" bg-white dark:bg-black min-h-[calc(100vh)] flex flex-col-reverse xl:flex-row">
       <div className="flex !p-10 ">
@@ -56,7 +76,7 @@ const Contact = () => {
 
         <h2>Send us your queries right now.</h2>
 
-        <form action="" className=" xl:!mt-12 ">
+        <form ref={form} onSubmit={sendEmail} className=" xl:!mt-12 ">
           <div className="xl:flex xl:gap-12 ">
             <div className="xl:w-[40%] !mb-4 xl:!mb-0">
               <label htmlFor="">Name</label>
@@ -67,6 +87,7 @@ const Contact = () => {
                   type="text"
                   className="focus:outline-none"
                   placeholder="Bhusan Bam"
+                  name="from_name"
                 />
               </div>
             </div>
@@ -76,6 +97,7 @@ const Contact = () => {
 
               <div className="flex !p-4 items-center !mt-2 bg-gray-200 dark:bg-black dark:border-[#16151a] dark:border-2  h-10 rounded-xl">
                 <input
+                  name="subject"
                   type="text"
                   className="focus:outline-none"
                   placeholder="Delivery Inquiry"
@@ -91,6 +113,7 @@ const Contact = () => {
               <div className="flex !p-4 items-center !mt-2 bg-gray-200 dark:bg-black dark:border-[#16151a] dark:border-2  h-10 rounded-xl">
                 <Mail size={20} className="!mr-2"></Mail>
                 <input
+                  name="from_email"
                   type="text"
                   className="focus:outline-none"
                   placeholder="test@gmail.com"
@@ -104,6 +127,7 @@ const Contact = () => {
               <div className="flex !p-4 items-center !mt-2 bg-gray-200 dark:bg-black dark:border-[#16151a] dark:border-2  h-10 rounded-xl">
                 <Phone size={20} className="!mr-2"></Phone>
                 <input
+                  name="phone_no"
                   type="text"
                   className="focus:outline-none"
                   placeholder="9818245679"
@@ -115,12 +139,15 @@ const Contact = () => {
           <div className="flex flex-col !mt-6 ">
             {/* <h1>Write your message here</h1> */}
             <textarea
-              name=""
+              name="message"
               className="bg-gray-200 dark:bg-black dark:border-[#16151a] dark:border-2 rounded-md w-full h-[200px] xl:min-h-[300px]  focus:outline-none !p-5"
               id=""
               placeholder="Hey I want to inquire about my car delivery"
             ></textarea>
-            <button className="bg-yellow-400 !p-3 !px-5 rounded-xl !mt-6 dark:text-black">
+            <button
+              type="submit"
+              className="bg-yellow-400 !p-3 !px-5 rounded-xl !mt-6 dark:text-black"
+            >
               Submit
             </button>
           </div>

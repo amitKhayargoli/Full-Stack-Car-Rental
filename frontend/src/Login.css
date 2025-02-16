@@ -252,15 +252,30 @@
 }
 
 @media (max-width: 600px) {
+    .footer-links a {
+        font-size:  11px !important;
+       
+    }
+
+
+
+    .login-section{
+
+        display: flex;
+        justify-content: center;
+    }
+
+    .login-card{
+        margin-right: 60px;
+        padding: 5px;
+        width: 250px;
+    }
 
 
     .login-card h2 {
         font-size: 20px; 
     }
 
-    .form-group input {
-        width: 100%; 
-    }
 
     .submit-btn {
         width: 100%; 
