@@ -1,5 +1,4 @@
-const Car = require("../model/carSchema");
-
+const { Car, GarageCar } = require("../model/associations");
 const addCar = async (req, res) => {
   try {
     const {
@@ -61,6 +60,11 @@ const updateCarBookingStatus = async (req, res) => {
     if (car[0] === 0) {
       return res.status(404).send({ message: "Car not found" });
     }
+
+    //Remove car details from GarageCar table
+    await GarageCar.destroy({
+      where: { carId: carId },
+    });
 
     res
       .status(200)

@@ -14,6 +14,8 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
 
   const [brandArray, setBrandArray] = useState([]);
 
+  const [availableCars, setAvailableCars] = useState([]);
+
   useEffect(() => {
     const fetchCars = async () => {
       try {
@@ -22,9 +24,16 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
 
         const carData = response.data.data;
         setCars(carData);
-        setFilteredCars(carData);
 
-        const brand = carData.map((car) => car.brand);
+        const available = carData.filter((car) => car.bookingStatus === false);
+        setAvailableCars(available);
+
+        console.log(available);
+
+        setFilteredCars(available);
+        console.log(filteredcars);
+
+        const brand = available.map((car) => car.brand);
 
         setBrandArray(brand);
       } catch (error) {
@@ -38,41 +47,40 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
     const value = e.target.value.toLowerCase();
     setQuery(value);
 
-    const filtered = cars.filter((item) =>
+    const filtered = availableCars.filter((item) =>
       item.model.toLowerCase().includes(value)
     );
 
     setFilteredCars(filtered);
 
-    console.log(filteredcars);
-    console.log(filtered);
+    // console.log(filteredcars);
+    // console.log(filtered);
   };
 
   const handleFilterBrand = (e) => {
     const value = e.target.value.toLowerCase();
     setQuery("");
 
-    const filtered = cars.filter((item) =>
+    const filtered = availableCars.filter((item) =>
       item.brand.toLowerCase().includes(value)
     );
 
     setFilteredCars(filtered);
 
-    console.log(filteredcars);
-    console.log(filtered);
+    // console.log(filteredcars);
+    // console.log(filtered);
   };
 
   const handleFilterType = (e) => {
     const value = e.target.value.toLowerCase();
 
-    const filtered = cars.filter((item) =>
+    const filtered = availableCars.filter((item) =>
       item.type.toLowerCase().includes(value)
     );
 
     setFilteredCars(filtered);
 
-    console.log(filteredcars);
-    console.log(filtered);
+    // console.log(filteredcars);
   };
 
   return (

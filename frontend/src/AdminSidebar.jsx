@@ -49,10 +49,6 @@ const AdminSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
     },
 
     { name: "Active Bids", icon: <History className={iconClassNames} /> },
-    {
-      name: "Transactions",
-      icon: <CircleDollarSign className={iconClassNames} />,
-    },
 
     {
       name: "Users",

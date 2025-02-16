@@ -4,9 +4,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import GoBack from "./client/GoBack";
 
+import { toast, ToastContainer } from "react-toastify";
 const Garage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -19,23 +20,55 @@ const Garage = () => {
   };
 
   const [cars, setCars] = useState([]);
+  const [availableCars, setAvailableCars] = useState(cars);
+
+  const fetchCars = useCallback(async () => {
+    const userID = localStorage.getItem("userId");
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/api/garage/${userID}`
+      );
+      const carData = response.data;
+      setCars(carData);
+
+      setAvailableCars(carData.filter((car) => car.bookingStatus === false));
+    } catch (error) {
+      console.error("Error fetching cars:", error);
+    }
+  }, []);
 
   useEffect(() => {
-    const userID = localStorage.getItem("userId");
-
-    const fetchCars = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:5000/api/garage/${userID}`
-        );
-        const carData = response.data;
-        setCars(carData);
-      } catch (error) {
-        console.error("Error fetching cars:", error);
-      }
-    };
     fetchCars();
-  }, []);
+  }, [fetchCars]);
+
+  const handleRentCar = async (event) => {
+    const carId = event.currentTarget.getAttribute("data-car-id");
+
+    const bookingStatus = true;
+    // const userId = localStorage.getItem("userId");
+
+    try {
+      const req = { bookingStatus };
+      const res = await axios.put(
+        `http://localhost:5000/Car/updateCarBookingStatus/${carId}`,
+        req,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(res);
+
+      toast.success("Car Rented successfully!");
+
+      fetchCars();
+    } catch (error) {
+      toast.error("Error Renting Car!");
+      console.error("Error Renting Car:", error);
+    }
+  };
 
   const navMenu = document.getElementById("nav-menu"),
     navToggle = document.getElementById("nav-toggle"),
@@ -69,7 +102,7 @@ const Garage = () => {
             loop={cars.length > 1}
             className="home__swiper"
           >
-            {cars.map((car) => (
+            {availableCars.map((car) => (
               <SwiperSlide key={car.carId}>
                 <article className="home__article car__orange">
                   <div className={`home__panel-1 `}></div>
@@ -97,8 +130,9 @@ const Garage = () => {
                         <span>{car.price}$</span>
                       </div>
                       <button
+                        data-car-id={car.carId}
                         className="home__button !cursor-pointer"
-                        onClick={openModal}
+                        onClick={handleRentCar}
                       >
                         <span>Rent now</span>
                         <i className="ri-arrow-right-line"></i>
@@ -126,6 +160,8 @@ const Garage = () => {
           {/* <div className="swiper-pagination"></div> */}
         </section>
       </main>
+
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

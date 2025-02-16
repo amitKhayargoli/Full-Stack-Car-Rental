@@ -7,7 +7,12 @@ import about4 from "./LandingImg/fordmustang.jpg";
 import Footer from "./Footer";
 import Testimonial from "./Testimonial";
 import BackgroundVideo from "./BackgroundVideo";
+import { useState } from "react";
 function LodeX() {
+  const accessToken = localStorage.getItem("token");
+
+  const [isLoggedin, setIsLoggedIn] = useState(false);
+
   return (
     <div className="container">
       <div className="nav">

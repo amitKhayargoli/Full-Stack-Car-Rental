@@ -11,6 +11,7 @@ const Listings = () => {
   const textClassNames = "dark:text-gray-50";
 
   const [cars, setCars] = useState([]);
+  const [availableCars, setAvailableCars] = useState([]);
 
   useEffect(() => {
     const fetchCars = async () => {
@@ -20,6 +21,7 @@ const Listings = () => {
 
         const carData = response.data.data;
         setCars(carData);
+        setAvailableCars(carData.filter((car) => car.bookingStatus === false));
       } catch (error) {
         console.error("Error fetching cars:", error);
       }
@@ -47,7 +49,7 @@ const Listings = () => {
 
         <div className="flex gap-6 w-full flex-wrap ">
           {/* Car Card */}
-          {cars.map((car) => (
+          {availableCars.map((car) => (
             <div className="!p-4 bg-[#f9f9f9] dark:bg-[#1d1b30] xl:w-[40%] rounded-xl">
               <img
                 className="w-full object-contain h-[300px]"

@@ -62,7 +62,7 @@ i{
 
 .sidebar{
     background-color: #0c0c29;
-    /* background-color: #7366ff; */
+    /* background-color: #7366ff; */    
 }
 
 .sidebar i{
@@ -114,7 +114,7 @@ i{
     width: 100%;
     padding: 10px;
     padding-left: 20px;
-    border-radius: 5px;
+    
     flex-direction: column;
     min-height: 100vh;
 }

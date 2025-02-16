@@ -13,6 +13,9 @@ const Settings = () => {
 
   const [userData, setUserData] = useState(null);
 
+  const inputClassNames =
+    "!bg-[#e5e7eb] dark:!bg-black !b-black dark:!b-[#ffffff2c]";
+
   const {
     register,
     handleSubmit,
@@ -22,7 +25,7 @@ const Settings = () => {
   } = useForm();
 
   useEffect(() => {
-    const storedUserId = localStorage.getItem("userId"); // ✅ Get userId from localStorage
+    const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       setUserId(storedUserId);
       fetchUserProfile(storedUserId);
@@ -51,28 +54,58 @@ const Settings = () => {
     }
   };
 
+  // Handle input changes
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  // Handle Image Upload & Preview
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
-      // const previewURL = URL.createObjectURL(file);
+      setUserData(userData);
     }
   };
 
   const onSubmit = async (formData) => {
     console.log("Form Data Submitted:", formData);
     try {
+      let imageUrl = "";
+
+      if (selectedFile) {
+        const data = new FormData(); // Create new FormData
+        data.append("file", selectedFile);
+
+        const uploadResponse = await axios.post(
+          "http://localhost:5000/api/file/upload",
+          data,
+          { headers: { "Content-Type": "multipart/form-data" } }
+        );
+
+        console.log("Upload Response:", uploadResponse.data);
+        imageUrl = "http://localhost:5000/" + uploadResponse.data.file.path;
+        if (!imageUrl) {
+          throw new Error("File URL is missing from response");
+        }
+      }
       if (userData) {
         await axios.put(
           `http://localhost:5000/api/userProfile/${userId}`,
-          formData
+
+          {
+            ...formData,
+            profilePictureURL: imageUrl,
+          }
         );
         alert("Profile updated successfully!");
       } else {
         await axios.post(`http://localhost:5000/api/userProfile`, {
           userId,
           ...formData,
+          profilePictureURL: imageUrl,
         });
         alert("Profile created successfully!");
       }
@@ -80,10 +113,11 @@ const Settings = () => {
       console.error("Error updating profile:", error);
     }
   };
+
   return (
     <>
       <div className="second ">
-        <div className="settings !pr-">
+        <div className="settings !bg-white !text-black dark:!text-white  dark:!bg-black">
           <h2>Settings</h2>
           <h2>Profile</h2>
           <p>Update your profile here</p>
@@ -97,7 +131,12 @@ const Settings = () => {
                 <label htmlFor="address" id="address">
                   Address
                 </label>
-                <input type="text" id="address" {...register("address")} />
+                <input
+                  className={inputClassNames}
+                  type="text"
+                  id="address"
+                  {...register("address")}
+                />
               </div>
 
               <div className="info">
@@ -105,14 +144,22 @@ const Settings = () => {
                   Email
                 </label>
 
-                <input type="text" {...register("email")} />
+                <input
+                  type="text"
+                  {...register("email")}
+                  className={inputClassNames}
+                />
               </div>
 
               <div className="info">
                 <label htmlFor="" id="phoneNo">
                   Phone Number
                 </label>
-                <input type="text" {...register("phoneNumber")} />
+                <input
+                  type="text"
+                  {...register("phoneNumber")}
+                  className={inputClassNames}
+                />
               </div>
 
               <div className="info">
@@ -123,6 +170,7 @@ const Settings = () => {
                 <input
                   type="text"
                   id="gender"
+                  className={inputClassNames}
                   {...register("gender")}
                   placeholder="Male"
                 />
@@ -130,7 +178,12 @@ const Settings = () => {
 
               <div className="info">
                 <label htmlFor="dob">Date of birth</label>
-                <input type="date" id="dob" {...register("dateOfBirth")} />
+                <input
+                  type="date"
+                  id="dob"
+                  {...register("dateOfBirth")}
+                  className={inputClassNames}
+                />
               </div>
             </div>
 
@@ -160,7 +213,6 @@ const Settings = () => {
                     id="carImage"
                     class="hidden"
                     accept="image/*"
-                    {...register("profilePictureURL")}
                     onChange={handleImageUpload}
                   />
                 </label>

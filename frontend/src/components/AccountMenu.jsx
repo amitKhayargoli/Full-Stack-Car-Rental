@@ -26,6 +26,7 @@ export default function AccountMenu() {
 
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
+
     if (storedUserId) {
       fetchUserProfile(storedUserId);
     }
@@ -36,6 +37,8 @@ export default function AccountMenu() {
       const response = await axios.get(
         `http://localhost:5000/api/userProfile/${userId}`
       );
+
+      console.log("Response:", response.data.data.profilePictureURL);
 
       if (response.data.data.profilePictureURL) {
         setImage(response.data.data.profilePictureURL);
@@ -78,7 +81,7 @@ export default function AccountMenu() {
             >
               <Avatar
                 sx={{ width: 32, height: 32, bgcolor: "#7366ff" }}
-                src={`/${image}`}
+                src={image}
                 alt="Profile"
               />
             </IconButton>
@@ -122,12 +125,8 @@ export default function AccountMenu() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose}>
-            <Avatar
-              sx={{ bgcolor: "#7366ff" }}
-              src={`/${image}`}
-              alt="Profile"
-            />{" "}
-            My account
+            <Avatar sx={{ bgcolor: "#7366ff" }} src={image} alt="Profile" /> My
+            account
           </MenuItem>
           <Divider />
           <MenuItem
