@@ -64,7 +64,7 @@
     border-radius: 50%;
     overflow: hidden;
     margin-bottom: 20px;
-    box-shadow: 0 0 0 3px #fff;
+    box-shadow: 2px 2px 15px 2px #fbff06;
   }
   
   .profileImg {

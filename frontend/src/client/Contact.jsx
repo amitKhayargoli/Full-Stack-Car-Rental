@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone, User2 } from "lucide-react";
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const iconClassNames = "text-black dark:text-white !ml-1 !mr-2";
@@ -17,6 +18,7 @@ const Contact = () => {
       .then(
         () => {
           console.log("SUCCESS!");
+          toast.success("Email sent successfully");
         },
         (error) => {
           console.log("FAILED...", error.text);
@@ -85,6 +87,7 @@ const Contact = () => {
                 <User2 size={20} className="!mr-2"></User2>
                 <input
                   type="text"
+                  required
                   className="focus:outline-none"
                   placeholder="Bhusan Bam"
                   name="from_name"
@@ -99,6 +102,7 @@ const Contact = () => {
                 <input
                   name="subject"
                   type="text"
+                  required
                   className="focus:outline-none"
                   placeholder="Delivery Inquiry"
                 />
@@ -115,6 +119,7 @@ const Contact = () => {
                 <input
                   name="from_email"
                   type="text"
+                  required
                   className="focus:outline-none"
                   placeholder="test@gmail.com"
                 />
@@ -129,6 +134,7 @@ const Contact = () => {
                 <input
                   name="phone_no"
                   type="text"
+                  required
                   className="focus:outline-none"
                   placeholder="9818245679"
                 />
@@ -146,7 +152,7 @@ const Contact = () => {
             ></textarea>
             <button
               type="submit"
-              className="bg-yellow-400 !p-3 !px-5 rounded-xl !mt-6 dark:text-black"
+              className="bg-yellow-400 !p-3 !px-5 rounded-xl !mt-6 dark:text-black cursor-pointer"
             >
               Submit
             </button>
