@@ -45,12 +45,14 @@ const CustomerReviews = () => {
             type="text"
             {...register("username")}
             placeholder="Name"
+            required
           />
           <input
             className={inputFieldClassnames}
             type="text"
             id="email"
             {...register("email")}
+            required
             placeholder="a1995@gmail.com"
           />
         </div>
@@ -58,6 +60,7 @@ const CustomerReviews = () => {
         <textarea
           className={`${inputFieldClassnames} xl:w-full xl:h-[300px] h-60 w-full !my-2`}
           id="review"
+          required
           {...register("review")}
           placeholder="Add your testimonial here"
         ></textarea>
