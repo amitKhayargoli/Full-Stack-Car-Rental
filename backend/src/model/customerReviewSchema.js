@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database/db");
-const UserProfile = require("./userProfileSchema"); // Assuming this is the path to your UserProfile schema
+const UserProfile = require("./userProfileSchema"); // Import UserProfile schema
 
 const CustomerReview = sequelize.define("customerReviews", {
     userId: {
@@ -22,15 +22,14 @@ const CustomerReview = sequelize.define("customerReviews", {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    profilePicture: {
+    profilePictureURL: { // Add profilePictureURL field
         type: DataTypes.STRING,
         allowNull: true,
-        references: {
-            model: UserProfile,
-            key: 'profilePictureURL', 
-        },
     },
 });
+
+// Set up the relationship between CustomerReview and UserProfile
+CustomerReview.belongsTo(UserProfile, { foreignKey: 'userId', targetKey: 'userId', as: 'userProfile' });
 
 (async () => {
     try {
