@@ -28,7 +28,7 @@ const Listings = () => {
         console.log(response.data.data);
 
         const carData = response.data.data;
-        setCars(carData);
+
         setAvailableCars(
           carData.filter((car) => car.bookingStatus === "Available")
         );
