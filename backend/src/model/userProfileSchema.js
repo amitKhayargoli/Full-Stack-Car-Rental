@@ -35,10 +35,10 @@ const UserProfile = sequelize.define("UserProfile", {
   profilePictureURL: {
     type: DataTypes.STRING,
     allowNull: true,
+    unique: true,
   },
 });
 
-// ✅ Define Association
 UserProfile.belongsTo(Users, { foreignKey: "userId", as: "user" });
 
 (async () => {
