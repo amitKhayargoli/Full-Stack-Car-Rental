@@ -38,14 +38,14 @@ const UserProfile = sequelize.define("UserProfile", {
   },
 });
 
-// ✅ Define Association
-UserProfile.belongsTo(Users, { foreignKey: "userId", as: "user" });
+// UserProfile.belongsTo(Users, { foreignKey: "userId", as: "user" });
 
 (async () => {
   try {
     await UserProfile.sync();
     console.log("====================", UserProfile.associations);
-    console.log(User.associations);
+    console.log(Users.associations);
+    console.log(UserProfile.associations);
     console.log("UserProfile table has been created");
   } catch (error) {
     console.log("Error:", error.message);

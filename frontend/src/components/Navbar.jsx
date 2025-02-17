@@ -24,10 +24,10 @@ const Navbar = ({
   // console.log(isDarkMode);
   return (
     <div
-      className={`xl:w-full full h-25 flex items-center justify-between bg-[#f9f9f9] px-4 py-3 dark:bg-black transition-all duration-300 
+      className={`xl:w-full full h-25 flex items-center justify-between bg-[#f9f9f9] !px-4 !py-3 dark:bg-black transition-all duration-300 
  border-b-[0.5px] border-b-gray-200 dark:border-gray-800`}
     >
-      <div className="!ml-4 flex items-center">
+      <div className="sm:!ml-4 flex items-center">
         {isSidebarCollapsed ? (
           <li
             onClick={() => setSidebarCollapsed(!isSidebarCollapsed)}
@@ -40,7 +40,7 @@ const Navbar = ({
         )}
 
         {/* Search Box */}
-        <div className=" !ml-8 flex items-center gap-2 bg-white shadow-slate-400 w-[200px] xl:w-[350px] h-[40%] !px-2 !py-2 dark:bg-[#343436] rounded-sm">
+        <div className=" !ml-1 sm:!ml-8 flex items-center gap-2 bg-white shadow-slate-400 w-[170px] md:w-[350px] h-[40%] !px-2 !py-2 dark:bg-[#343436] rounded-sm">
           <Search
             strokeWidth={1.5}
             className="text-gray-900 dark:text-gray-200 "
@@ -55,9 +55,9 @@ const Navbar = ({
       </div>
 
       {/* Theme Toggle and Settings */}
-      <div className="flex items-center gap-4 !mr-2">
+      <div className="flex items-center gap-2 md:gap-3">
         {isUser ? (
-          <a href="/Garage">
+          <a href="/Garage" className="">
             <StoreIcon className="text-black dark:text-white cursor-pointer"></StoreIcon>
           </a>
         ) : (

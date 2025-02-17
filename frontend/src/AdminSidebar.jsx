@@ -1,70 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./client/Client.css";
 import {
-  Bitcoin,
-  Book,
-  BookType,
-  Calendar,
-  CircleDollarSign,
-  DollarSign,
-  Euro,
-  HandCoins,
-  History,
   LayoutDashboard,
-  ListCollapseIcon,
-  Mail,
-  Pen,
-  Search,
-  Settings,
-  User,
-  Users2Icon,
-  Wallet,
-  Wallet2,
   WalletCardsIcon,
+  ListCollapseIcon,
+  History,
+  User,
+  Book,
+  Settings,
   X,
 } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const AdminSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
   const navigate = useNavigate();
-
+  const location = useLocation(); // Access the current location
   const LSactiveTab = localStorage.getItem("activeTab");
-  const [activeTab, setActiveTab] = useState(LSactiveTab);
+  const [activeTab, setActiveTab] = useState(LSactiveTab || "/Admin/Dashboard");
 
   const sidebarClassNames = `!p-5 fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white 
-  ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}
-  `;
+  ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}`;
 
   const iconClassNames = "text-gray-500 dark:text-white";
   const menuItems = [
-    { name: "Dashboard", icon: <LayoutDashboard className={iconClassNames} /> },
+    {
+      name: "Dashboard",
+      icon: <LayoutDashboard className={iconClassNames} />,
+      path: "/Admin/Dashboard",
+    },
     {
       name: "Bookings",
       icon: <WalletCardsIcon className={iconClassNames} />,
+      path: "/Admin/Bookings",
     },
-
     {
       name: "Listings",
       icon: <ListCollapseIcon className={iconClassNames} />,
+      path: "/Admin/Listings",
     },
-
-    { name: "Active Bids", icon: <History className={iconClassNames} /> },
-
+    {
+      name: "Active Bids",
+      icon: <History className={iconClassNames} />,
+      path: "/Admin/ActiveBids",
+    },
     {
       name: "Users",
-      icon: <User className={iconClassNames}></User>,
+      icon: <User className={iconClassNames} />,
+      path: "/Admin/Users",
     },
-
     {
-      name: "Costumer Review",
+      name: "Customer Review",
       icon: <Book className={iconClassNames} />,
+      path: "/Admin/CustomerReview",
     },
-
     {
       name: "Settings",
       icon: <Settings className={iconClassNames} />,
+      path: "/Admin/Settings",
     },
   ];
+
+  // Sync the active tab with the current route
+  useEffect(() => {
+    setActiveTab(location.pathname);
+  }, [location.pathname]);
 
   return (
     <div className={sidebarClassNames}>
@@ -91,22 +90,20 @@ const AdminSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
               key={item.name}
               className={`!px-5 !py-3 flex gap-3 cursor-pointer rounded-2xl transition-all duration-500 ease-in-out
                 ${
-                  activeTab === item.name
+                  activeTab === item.path
                     ? "bg-blue-800 border-none text-white"
                     : ""
                 }
               `}
               onClick={() => {
-                setActiveTab(item.name);
-
-                localStorage.setItem("activeTab", item.name);
-                // navigate(`${item.name}`);
-                navigate(`${item.name.trim().replace(/\s+/g, "")}`);
+                setActiveTab(item.path);
+                localStorage.setItem("activeTab", item.path);
+                navigate(item.path); // Navigate to the exact path
               }}
             >
               <span
                 className={`text-gray-500 transition-all duration-200 ${
-                  activeTab === item.name ? "text-white" : ""
+                  activeTab === item.path ? "text-white" : ""
                 }`}
               >
                 {item.icon}

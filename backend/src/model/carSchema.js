@@ -43,14 +43,15 @@ const Car = sequelize.define("Car", {
     allowNull: false,
   },
   bookingStatus: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
+    type: DataTypes.ENUM("Available", "Pending", "Booked"),
+    allowNull: false,
+    defaultValue: "Available",
   },
 });
 
 (async () => {
   try {
-    await sequelize.sync(); // Sync models to the database
+    await Car.sync(); // Sync models to the database
     console.log("Car table has been created");
   } catch (error) {
     console.log("Error:", error.message);
