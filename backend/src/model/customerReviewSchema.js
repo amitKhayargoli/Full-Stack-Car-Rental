@@ -28,8 +28,7 @@ const CustomerReview = sequelize.define("customerReviews", {
     },
 });
 
-// Set up the relationship between CustomerReview and UserProfile
-CustomerReview.belongsTo(UserProfile, { foreignKey: 'userId', targetKey: 'userId', as: 'userProfile' });
+
 
 (async () => {
     try {

@@ -43,8 +43,8 @@ const Car = sequelize.define("Car", {
     allowNull: false,
   },
   bookingStatus: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
+    type: DataTypes.ENUM("Available", "Booked","Pending"), // Enum values
+    defaultValue: "Available",
   },
 });
 

@@ -29,9 +29,11 @@ const Listings = () => {
 
         const carData = response.data.data;
         setCars(carData);
+
         setAvailableCars(
           carData.filter((car) => car.bookingStatus === "Available")
         );
+        console.log(availableCars);
       } catch (error) {
         console.error("Error fetching cars:", error);
       }
