@@ -1,8 +1,9 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database/db");
+const UserProfile = require("./userProfileSchema"); // Import UserProfile schema
 
-const Users = sequelize.define("users", {
-  userId: {
+const CustomerReview = sequelize.define("customerReviews", {
+  id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true,
@@ -17,26 +18,24 @@ const Users = sequelize.define("users", {
     allowNull: false,
     unique: true,
   },
-
-  password: {
+  review: {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
-  role: {
-    type: DataTypes.ENUM("user", "admin"),
-    allowNull: false,
-    defaultValue: "user",
+  profilePictureURL: {
+    // Add profilePictureURL field
+    type: DataTypes.STRING,
+    allowNull: true,
   },
 });
 
 (async () => {
   try {
-    await Users.sync();
-    console.log("User table has been created");
+    await CustomerReview.sync();
+    console.log("Customer Review table has been created");
   } catch (error) {
     console.log("Error: ", error.message);
   }
 })();
 
-module.exports = Users;
+module.exports = CustomerReview;

@@ -1,4 +1,3 @@
-const UserProfile = require("../model/userProfileSchema");
 const User = require("../model/userSchema");
 
 const create = async (req, res) => {
@@ -62,13 +61,7 @@ const deleteUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.findAll({
-      attributes: { exclude: ["password"] },
-      include: {
-        model: UserProfile,
-        as: "profile",
-      },
-    });
+    const users = await User.findAll();
     res.status(200).send({ data: users });
   } catch (error) {
     console.log(error);

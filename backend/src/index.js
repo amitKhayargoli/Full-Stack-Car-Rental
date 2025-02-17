@@ -6,6 +6,7 @@ const userProfileRouter = require("./routes/userProfileRoute");
 const userRouter = require("./routes/userRoute");
 const authRouter = require("./routes/authRoute");
 const carRouter = require("./routes/carRoute");
+const customerReviewRouter = require("./routes/customerReviewRoute");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 const { authenticateToken } = require("./middleware/token-middleware");
@@ -34,6 +35,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/garage", garageRoutes);
 app.use("/Car", carRouter);
 app.use("/api/userProfile", userProfileRouter);
+app.use("/api/customerReview", customerReviewRouter);
 app.use("/api/file", router);
 
 app.use("/api/rental", carRentalRoutes);

@@ -35,6 +35,7 @@ const UserProfile = sequelize.define("UserProfile", {
   profilePictureURL: {
     type: DataTypes.STRING,
     allowNull: true,
+    unique: true,
   },
 });
 
@@ -44,8 +45,7 @@ const UserProfile = sequelize.define("UserProfile", {
   try {
     await UserProfile.sync();
     console.log("====================", UserProfile.associations);
-    console.log(Users.associations);
-    console.log(UserProfile.associations);
+    console.log(User.associations);
     console.log("UserProfile table has been created");
   } catch (error) {
     console.log("Error:", error.message);

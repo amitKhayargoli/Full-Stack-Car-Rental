@@ -40,6 +40,11 @@ export default function AccountMenu() {
 
       console.log("Response:", response.data.data.profilePictureURL);
 
+      localStorage.setItem(
+        "profilePicURL",
+        response.data.data.profilePictureURL
+      );
+
       if (response.data.data.profilePictureURL) {
         setImage(response.data.data.profilePictureURL);
       }

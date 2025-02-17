@@ -68,9 +68,13 @@
     margin-top: 12px;
 
 }
+<<<<<<< HEAD:src/Sellcar.css
+
+=======
 #carImage {
     /* display: none; */
 }
+>>>>>>> 3e1285d0c89e2c870e07ae4bf54b8ebae2192974:frontend/src/Sellcar.css
 
 .navbar {
     display: flex;
@@ -174,6 +178,16 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD:src/Sellcar.css
+.info input[type="color"] {
+    width: 150px;
+    height: 55px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: transparent;
+}
+=======
 
 input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1); /* Inverts the colors to make the icon white */
@@ -183,3 +197,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   input[type="date"]::-moz-focus-inner {
     border: 0;
   }
+>>>>>>> 3e1285d0c89e2c870e07ae4bf54b8ebae2192974:frontend/src/Sellcar.css

@@ -4,11 +4,37 @@ import pfp3 from "./img/pfp3.jpg";
 import pfp4 from "./img/pfp4.jpg";
 import arthur from "./img/arthur.jpg";
 import "./Testimonial.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Testimonial = () => {
+  const [testimonial, setTestimonial] = useState([]);
   useEffect(() => {
+    // const accessToken = localStorage.getItem("token");
+
+    // const [isLoggedin, setIsLoggedIn] = useState(false);
+
+    // if (accessToken) {
+    //   setIsLoggedIn(true);
+    // }
+
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/customerReview/all"
+        );
+        console.log("Testimonials", response.data);
+        const testimonials = response.data;
+
+        setTestimonial(testimonials);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchTestimonials();
+
     new Swiper(".swiper", {
+      loop: true,
       grabCursor: true,
       slidesPerView: "auto",
       spaceBetween: 10,
@@ -38,22 +64,18 @@ const Testimonial = () => {
       <h1>Customer Reviews</h1>
       <div className="swiper Testimonial-slider">
         <div className="swiper-wrapper">
-          {[pfp1, pfp2, pfp3, pfp4].map((profile, index) => (
-            <div className="swiper-slide item" key={index}>
+          {testimonial.map((testimonial) => (
+            <div className="swiper-slide item">
               <div className="reviews-content">
                 <div className="img-area">
                   <img
                     className="profileImg"
-                    src={profile}
-                    alt={`Profile ${index + 1}`}
+                    src={testimonial.profilePictureURL}
                   />
                 </div>
                 <div className="text-content">
-                  <p>
-                    Great experience! Easy to navigate and helpful customer
-                    service. Highly recommend!
-                  </p>
-                  <h2>John Doe</h2>
+                  <p>{testimonial.review}</p>
+                  <h2>{testimonial.username}</h2>
                 </div>
               </div>
             </div>
