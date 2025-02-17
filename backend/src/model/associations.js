@@ -4,6 +4,7 @@ const Garage = require("./garageSchema");
 const UserProfile = require("./userProfileSchema");
 const Users = require("./userSchema");
 
+//Updated Associations file
 const carRental = require("./carRentalSchema");
 
 Users.hasOne(Garage, { foreignKey: "userId" });
