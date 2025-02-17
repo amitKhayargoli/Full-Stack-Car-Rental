@@ -25,10 +25,7 @@ const BackgroundVideo = () => {
           DRIVE BEYOND YOUR LIMITS
         </p>
 
-        <button
-          className="cursor-pointer"
-          onClick={() => navigate("/CustomerDashboard")}
-        >
+        <button className="cursor-pointer" onClick={() => navigate("/Login")}>
           <ChevronRight size={60} className="border-2"></ChevronRight>
         </button>
       </div>
