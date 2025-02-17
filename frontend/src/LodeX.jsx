@@ -8,16 +8,30 @@ import Footer from "./Footer";
 import Testimonial from "./Testimonial";
 import BackgroundVideo from "./BackgroundVideo";
 import { useEffect, useState } from "react";
+import axios from "axios";
 function LodeX() {
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem("token");
+  useEffect(() => {
+    // const accessToken = localStorage.getItem("token");
 
-  //   const [isLoggedin, setIsLoggedIn] = useState(false);
+    // const [isLoggedin, setIsLoggedIn] = useState(false);
 
-  //   if (accessToken) {
-  //     setIsLoggedIn(true);
-  //   }
-  // });
+    // if (accessToken) {
+    //   setIsLoggedIn(true);
+    // }
+
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/customerReview/all"
+        );
+        // console.log(response.data);
+        const testimonials = response.data;
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchTestimonials();
+  }, []);
 
   return (
     <div className="container">
@@ -46,52 +60,10 @@ function LodeX() {
             Login
           </a>
         </button>
-
-        {/* <div className="nav-close">
-          <i class="ri-close-large-line"></i>
-        </div>
-
-        <div className="nav-toggle">
-          <i class="ri-menu-line"></i>
-        </div> */}
       </div>
       <div className="body">
         <BackgroundVideo></BackgroundVideo>
       </div>
-
-      {/* <div class="icons-container">
-        <div class="icons icon1">
-          <i class="fa-solid fa-house"></i>
-          <div class="content">
-            <h3>159+</h3>
-            <p>branches</p>
-          </div>
-        </div>
-
-        <div class="icons icon2">
-          <i class="fa-solid fa-car"></i>
-          <div class="content">
-            <h3>322+</h3>
-            <p>cars sold</p>
-          </div>
-        </div>
-
-        <div class="icons icon3">
-          <i class="fa-solid fa-users"></i>
-          <div class="content">
-            <h3>300+</h3>
-            <p>happy clients</p>
-          </div>
-        </div>
-
-        <div class="icons icon4">
-          <i class="fa-solid fa-car"></i>
-          <div class="content">
-            <h3>400+</h3>
-            <p>new cars</p>
-          </div>
-        </div>
-      </div> */}
 
       <div className="about-section" id="About">
         <div className="about1">

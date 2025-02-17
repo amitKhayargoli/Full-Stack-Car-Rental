@@ -10,7 +10,6 @@ Garage.belongsTo(Users, { foreignKey: "userId" });
 
 Garage.belongsToMany(Car, { through: GarageCar, foreignKey: "garageId" });
 Car.belongsToMany(Garage, { through: GarageCar, foreignKey: "carId" });
-CustomerReview.belongsTo(UserProfile, { foreignKey: 'userId', targetKey: 'userId', as: 'profile' });
 
 module.exports = {
   Users,
