@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+.border-box-page * {
+    box-sizing: border-box;
+  }
