@@ -39,7 +39,7 @@ const UserProfile = sequelize.define("UserProfile", {
   },
 });
 
-UserProfile.belongsTo(Users, { foreignKey: "userId", as: "user" });
+// UserProfile.belongsTo(Users, { foreignKey: "userId", as: "user" });
 
 (async () => {
   try {
