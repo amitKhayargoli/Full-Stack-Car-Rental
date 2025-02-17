@@ -11,7 +11,7 @@ const dotenv = require("dotenv");
 const { authenticateToken } = require("./middleware/token-middleware");
 const router = require("./routes/uploadRoutes");
 const garageRoutes = require("./routes/garageRoute");
-
+const carRentalRoutes = require("./routes/carRentalRoutes");
 const { createUploadsFolder } = require("./security/helper");
 
 dotenv.config();
@@ -36,13 +36,12 @@ app.use("/Car", carRouter);
 app.use("/api/userProfile", userProfileRouter);
 app.use("/api/file", router);
 
+app.use("/api/rental", carRentalRoutes);
+
 (async () => {
   try {
     await sequelize.authenticate();
     console.log("Database connected successfully");
-
-    // await sequelize.sync();
-    // console.log("All tables synced");
 
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
