@@ -1,6 +1,10 @@
 import { carModel } from "../postgres/db.js";
+<<<<<<< HEAD
 import path from "path";
 import fs from "fs";
+=======
+
+>>>>>>> 1d1db17 (Normalize line endings)
 
 export const addCar = async (req, res) => {
   const { model, color, price, yearOfManufacture, imagePath } = req.body;
