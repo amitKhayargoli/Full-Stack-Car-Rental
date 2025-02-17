@@ -1,8 +1,3 @@
-<<<<<<< HEAD:src/AdminDashboard.jsx
-import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
-=======
->>>>>>> 3e1285d0c89e2c870e07ae4bf54b8ebae2192974:frontend/src/AdminDashboard.jsx
 import "./Booking.css";
 import "./AdminDashboard.css";
 import car1 from "./img/mini-car-01.png";

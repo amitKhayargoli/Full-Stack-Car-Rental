@@ -5,6 +5,7 @@ import {
   Route,
   Routes,
   Outlet,
+  Navigate,
 } from "react-router-dom";
 import ClientSidebar from "./ClientSidebar";
 import ClientNavbar from "../components/Navbar";

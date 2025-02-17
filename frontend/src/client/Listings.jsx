@@ -7,6 +7,14 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { addToGarage } from "./addToGarage";
 
+import {
+  Modal,
+  ModalTrigger,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+} from "../components/AnimatedModal";
+
 const Listings = () => {
   const textClassNames = "dark:text-gray-50";
 
@@ -21,7 +29,9 @@ const Listings = () => {
 
         const carData = response.data.data;
         setCars(carData);
-        setAvailableCars(carData.filter((car) => car.bookingStatus === false));
+        setAvailableCars(
+          carData.filter((car) => car.bookingStatus === "Available")
+        );
       } catch (error) {
         console.error("Error fetching cars:", error);
       }

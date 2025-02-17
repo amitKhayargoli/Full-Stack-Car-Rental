@@ -7,7 +7,17 @@ import "swiper/css/pagination";
 import { useCallback, useEffect, useState } from "react";
 import GoBack from "./client/GoBack";
 
+import {
+  Modal,
+  ModalTrigger,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+} from "./components/AnimatedModal";
+
 import { toast, ToastContainer } from "react-toastify";
+import { Check, DollarSign, Trash, Trash2 } from "lucide-react";
+
 const Garage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -22,6 +32,12 @@ const Garage = () => {
   const [cars, setCars] = useState([]);
   const [availableCars, setAvailableCars] = useState(cars);
 
+  const [selectedTime, setSelectedTime] = useState("");
+
+  const [car, setCar] = useState("");
+
+  const [total, setTotal] = useState(0);
+
   const fetchCars = useCallback(async () => {
     const userID = localStorage.getItem("userId");
     try {
@@ -31,7 +47,11 @@ const Garage = () => {
       const carData = response.data;
       setCars(carData);
 
-      setAvailableCars(carData.filter((car) => car.bookingStatus === false));
+      // console.log(carData);
+
+      setAvailableCars(
+        carData.filter((car) => car.bookingStatus === "Available")
+      );
     } catch (error) {
       console.error("Error fetching cars:", error);
     }
@@ -41,10 +61,27 @@ const Garage = () => {
     fetchCars();
   }, [fetchCars]);
 
+  const handleChange = (event) => {
+    const carId = Number(event.target.getAttribute("data-car-id"));
+    const newSelectedTime = event.target.value;
+    setSelectedTime(newSelectedTime);
+
+    const selectedCar = cars.find((car) => car.carId === carId);
+
+    if (selectedCar) {
+      const newTotal = newSelectedTime * selectedCar.price;
+      setTotal(newTotal);
+      console.log("Selected car price:", selectedCar.price);
+      console.log("Total:", newTotal);
+    } else {
+      console.error("Selected car not found");
+    }
+  };
+
   const handleRentCar = async (event) => {
     const carId = event.currentTarget.getAttribute("data-car-id");
 
-    const bookingStatus = true;
+    const bookingStatus = "Pending";
     // const userId = localStorage.getItem("userId");
 
     try {
@@ -67,6 +104,28 @@ const Garage = () => {
     } catch (error) {
       toast.error("Error Renting Car!");
       console.error("Error Renting Car:", error);
+    }
+  };
+
+  const handleRemoveCar = async (event) => {
+    const carId = event.currentTarget.getAttribute("data-car-id");
+
+    try {
+      const res = await axios.put(
+        `http://localhost:5000/api/garage/removeCarFromGarage/${carId}`,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      fetchCars();
+      toast.success("Car Removed Successfully!");
+      console.log(res.data);
+    } catch (error) {
+      toast.error("Error Removing Car!");
+      console.error("Error Removing Car:", error);
     }
   };
 
@@ -129,14 +188,131 @@ const Garage = () => {
                         <span>0-100</span>
                         <span>{car.price}$</span>
                       </div>
-                      <button
+                      {/* <button
                         data-car-id={car.carId}
                         className="home__button !cursor-pointer"
                         onClick={handleRentCar}
                       >
                         <span>Rent now</span>
                         <i className="ri-arrow-right-line"></i>
-                      </button>
+                      </button> */}
+
+                      <Modal>
+                        {/* Button to open the modal */}
+                        <ModalTrigger className="text-white px-4 py-2 rounded home__button !cursor-pointer">
+                          Rent now
+                          <i className="ri-arrow-right-line"></i>
+                        </ModalTrigger>
+
+                        {/* Modal content */}
+                        <ModalBody className="rounded-2xl !mx-5 !p-6 text-black">
+                          <ModalContent className="flex flex-col items-center justify-between">
+                            <h1 className="font-bold mt-2 !text-2xl !text-gray-800">
+                              Rent This Car
+                            </h1>
+                            <img
+                              src={car.carImageURL}
+                              alt=""
+                              className="xl:w-[80%]"
+                            />
+
+                            <form
+                              action=""
+                              className="flex flex-col justify-between gap-6 h-full"
+                            >
+                              <h4>Rental Duration</h4>
+
+                              <div className="flex gap-2 justify-center">
+                                <label
+                                  className={`!p-1 ${
+                                    selectedTime === "3"
+                                      ? "bg-yellow-500 rounded-2xl"
+                                      : ""
+                                  }`}
+                                >
+                                  <input
+                                    type="radio"
+                                    value="3"
+                                    data-car-id={car.carId}
+                                    checked={selectedTime === "3"}
+                                    onChange={handleChange}
+                                    hidden
+                                  />
+                                  3 days
+                                </label>
+
+                                <label
+                                  className={`!p-1 ${
+                                    selectedTime === "5"
+                                      ? "bg-yellow-500 rounded-2xl"
+                                      : ""
+                                  }`}
+                                >
+                                  <input
+                                    type="radio"
+                                    value="5"
+                                    data-car-id={car.carId}
+                                    checked={selectedTime === "5"}
+                                    onChange={handleChange}
+                                    hidden
+                                  />
+                                  5 days
+                                </label>
+
+                                <label
+                                  className={`!p-1 ${
+                                    selectedTime === "7"
+                                      ? "bg-yellow-500 rounded-2xl"
+                                      : ""
+                                  }`}
+                                >
+                                  <input
+                                    type="radio"
+                                    value="7"
+                                    data-car-id={car.carId}
+                                    checked={selectedTime === "7"}
+                                    onChange={handleChange}
+                                    hidden
+                                  />
+                                  7 days
+                                </label>
+
+                                <span className="flex !ml-4 gap-2">
+                                  <h1 className="!text-xl !text-gray-500">
+                                    Total:
+                                  </h1>
+                                  <h1 className="!text-xl !text-yellow-500">
+                                    {total}$
+                                  </h1>
+                                </span>
+                              </div>
+
+                              <div className="flex gap-20 ">
+                                <button
+                                  type="button"
+                                  className="flex rounded-sm bg-red-600 !p-2 cursor-pointer"
+                                  data-car-id={car.carId}
+                                  onClick={handleRemoveCar}
+                                >
+                                  <h1 className="!font-medium !text-[10px] md:!text-sm">
+                                    Remove From Garage
+                                  </h1>
+                                </button>
+                                <button
+                                  type="button"
+                                  className="cursor-pointer flex bg-white-200 !px-5 rounded-sm border-1 border-gray-500 !p-2"
+                                >
+                                  <h1 className="!font-medium !text-[12px] !text-black md:!text-sm !mt-1 md:!mt-0">
+                                    Proceed
+                                  </h1>
+                                </button>
+                              </div>
+                            </form>
+                          </ModalContent>
+
+                          {/* Footer with close button */}
+                        </ModalBody>
+                      </Modal>
                     </div>
                   </div>
                 </article>

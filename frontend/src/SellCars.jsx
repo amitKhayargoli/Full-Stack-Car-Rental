@@ -65,7 +65,6 @@ const CarForm = () => {
       const response = await axios.post("http://localhost:5000/Car", {
         ...carData,
         carImageURL: imageUrl,
-        bookingStatus: false,
       });
 
       alert(response.data.message);

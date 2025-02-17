@@ -25,7 +25,9 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
         const carData = response.data.data;
         setCars(carData);
 
-        const available = carData.filter((car) => car.bookingStatus === false);
+        const available = carData.filter(
+          (car) => car.bookingStatus === "Available"
+        );
         setAvailableCars(available);
 
         console.log(available);

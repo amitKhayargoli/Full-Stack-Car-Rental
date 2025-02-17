@@ -63,9 +63,9 @@ export default function Login() {
           console.log(response.data.data.role);
           if (response.data.data.role == "user") {
             //Add client and Admin navigate to Dashboard
-            navigate("/Client"); // ✅ Redirect to Dashboard
+            navigate("/Client/Listings"); // ✅ Redirect to Dashboard
           } else if (response.data.data.role == "admin") {
-            navigate("/Admin");
+            navigate("/Admin/Dashboard");
           }
         } else {
           alert("Login failed! Check credentials.");
