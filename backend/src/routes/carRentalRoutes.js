@@ -3,7 +3,7 @@ const router = express.Router();
 
 const rentalController = require("../controller/carRentalController");
 
-// router.post("/", rentalController.addCar);
-// router.get("/", rentalController.getAllCars);
+router.post("/:carId", rentalController.addRental);
+router.get("/", rentalController.getAllRentals);
 // router.post("/:id", rentalController.updateCarBookingStatus);
 module.exports = router;

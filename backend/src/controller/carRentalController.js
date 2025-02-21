@@ -3,6 +3,7 @@ const { Car, carRental, Users } = require("../model/associations");
 const addRental = async (req, res) => {
   try {
     const body = req.body;
+    const carId = req.params;
 
     const rental = await carRental.create({
       carId,
