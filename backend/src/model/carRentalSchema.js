@@ -3,8 +3,7 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database/db");
 
 const Car = require("./carSchema");
-
-const User = require("./userSchema");
+const Users = require("./userSchema");
 
 const carRental = sequelize.define("CarRental", {
   rentalId: {
@@ -22,13 +21,13 @@ const carRental = sequelize.define("CarRental", {
       key: "carId",
     },
   },
-  userId: {
+   userId: {
     type: DataTypes.INTEGER,
-    allowNull: false,
     references: {
-      model: User,
+      model: Users,
       key: "userId",
     },
+    allowNull: false,
   },
 
   rentalDays: {

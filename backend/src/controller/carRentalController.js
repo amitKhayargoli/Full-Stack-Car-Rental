@@ -2,23 +2,32 @@ const { Car, carRental, Users } = require("../model/associations");
 
 const addRental = async (req, res) => {
   try {
-    const body = req.body;
-    const carId = req.params;
+    const { userId, carId, rentalDays, rentalPrice, rentalDate } = req.body;
 
+    // Ensure userId and carId are valid integers
+    const userIdInt = parseInt(userId, 10);
+    const carIdInt = parseInt(carId, 10);
+
+    if (isNaN(userIdInt) || isNaN(carIdInt) || isNaN(rentalDays) || isNaN(rentalPrice)) {
+      return res.status(400).json({ error: "Invalid input values" });
+    }
+
+    // Create rental record
     const rental = await carRental.create({
-      carId,
-      userId,
+      carId: carIdInt,
+      userId: userIdInt,
       rentalDays,
       rentalPrice,
-      rentalDate,
+      rentalDate: rentalDate || new Date(), // Defaults to current date if not provided
     });
 
-    res.status(201).json({ message: "Rental added successfully", car: rental });
+    res.status(201).json({ message: "Rental added successfully", rental });
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "failed to create rental" });
+    console.error("Error adding rental:", error);
+    res.status(500).json({ error: "Failed to create rental" });
   }
 };
+
 
 const getAllRentals = async (req, res) => {
   try {
