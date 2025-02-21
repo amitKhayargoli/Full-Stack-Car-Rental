@@ -33,13 +33,7 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
-    // try {
-    //   // Perform login request here
-    //   const response = await axios.post("http://localhost:5000/login", data);
-    //   alert(response.data.message);
-    // } catch (error) {
-    //   console.error("Error logging in:", error);
-    // }
+ 
     console.log("Logging in with:", data);
 
     axios
