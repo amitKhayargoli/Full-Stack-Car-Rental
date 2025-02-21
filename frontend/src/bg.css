@@ -5,8 +5,7 @@ margin: 0;
 
 }
 .video-container {
-    position: relative;
-    width: 100vw;
+  position: relative;
     height: 100vh;
     overflow: hidden;
   }

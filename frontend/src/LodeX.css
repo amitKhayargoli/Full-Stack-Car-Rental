@@ -30,10 +30,11 @@ span{
 }
 
 .container{
-    position: relative;
+    /* position: relative; */
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
 }
-
-
 
 
 .nav {

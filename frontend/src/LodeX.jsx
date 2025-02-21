@@ -61,9 +61,8 @@ function LodeX() {
           </a>
         </button>
       </div>
-      <div className="body">
-        <BackgroundVideo></BackgroundVideo>
-      </div>
+
+      <BackgroundVideo></BackgroundVideo>
 
       <div className="about-section" id="About">
         <div className="about1">
