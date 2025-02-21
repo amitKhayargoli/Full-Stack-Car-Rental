@@ -353,8 +353,6 @@ const Garage = () => {
           {/* <div className="swiper-pagination"></div> */}
         </section>
       </main>
-
-      <ToastContainer></ToastContainer>
     </div>
   );
 };
