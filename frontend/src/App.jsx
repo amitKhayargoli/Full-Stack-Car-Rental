@@ -21,6 +21,7 @@ import Users from "./Users";
 import ActiveBids from "./client/ActiveBids";
 import Listings from "./client/Listings";
 import Favorites from "./client/Favorites";
+import AdminActiveBids from "./AdminActiveBids";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
             <Route index element={<Navigate to="/Admin/Dashboard" replace />} />
             <Route path="Dashboard" element={<AdminDashboard />} />
             <Route path="Bookings" element={<Booking />} />
-            <Route path="ActiveBids" element={<ActiveBids />} />
+            <Route path="ActiveBids" element={<AdminActiveBids />} />
             <Route path="Users" element={<Users />} />
             <Route path="Listings" element={<Car />} />
             <Route path="Users" element={<Users />} />
