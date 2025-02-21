@@ -1,12 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import supra from "./img/supra.png";
 import porsche from "./img/porsche.png";
 import chevrolet from "./img/chevrolet.png";
 
 import CarForm from "./SellCars";
-import { Plus, X } from "lucide-react";
+import { Plus, Trash2, X } from "lucide-react";
+import axios from "axios";
 const Car = () => {
   const [isCarFormVisible, setCarFormVisible] = useState(false);
+
+  const [cars, setCars] = useState([]);
+  const [availableCars, setAvailableCars] = useState([]);
+
+  const fetchCars = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/Car");
+      console.log(response.data.data);
+
+      const carData = response.data.data;
+      setCars(carData);
+      setAvailableCars(
+        carData.filter((car) => car.bookingStatus === "Available")
+      );
+    } catch (error) {
+      console.error("Error fetching cars:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCars();
+  }, []);
 
   const openCarForm = () => {
     setCarFormVisible(true);
@@ -15,6 +38,8 @@ const Car = () => {
   const closeCarForm = () => {
     setCarFormVisible(false);
   };
+
+  const handleDelete = () => {};
 
   return (
     <div className="container">
@@ -30,7 +55,6 @@ const Car = () => {
               Add Car
             </h1>
           </div>
-
           {/* <div className="cars">
             <div className="car1 card">
               <label>Supra MK4</label>
@@ -39,26 +63,33 @@ const Car = () => {
               <label>$510</label>
             </div>
           </div> */}
+          {/* Car */}
 
-          <div className="!p-4 bg-[#f9f9f9] dark:bg-[#1d1b30] xl:w-[40%] rounded-xl">
-            <img
-              className="w-full object-contain h-[300px]"
-              alt="car Image"
-              // src={car.carImageURL}
-              // src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?cs=srgb&dl=pexels-pixabay-210019.jpg&fm=jpg"
-              src="https://pngimg.com/d/porsche_PNG10622.png"
-            />
+          <div className="flex gap-6 w-full flex-wrap  ">
+            {/* Car Card */}
+            {availableCars.map((car) => (
+              <div className="relative !p-4 bg-[#f9f9f9] text-black dark:text-white dark:bg-[#1d1b30] xl:w-[40%] rounded-xl">
+                <img
+                  className="w-full object-contain h-[300px]"
+                  alt="car Image"
+                  src={car.carImageURL}
+                />
 
-            <div className="flex justify-between items-center xl:h-7 !mb-3">
-              <h1 className="font-bold text-sm xl:text-xl">
-                {/* {car.model.toUpperCase()} */}
-                Lamorghini
-              </h1>
-              {/* <a onClick={handleAddToGarage} 
-                data-car-id={car.carId}>
-                  <Button title="Add to Garage" />
-                </a> */}
-            </div>
+                <a
+                  onClick={() => handleDelete()}
+                  className="absolute top-4 right-4"
+                >
+                  <Trash2></Trash2>
+                </a>
+
+                <div className="flex justify-between items-center xl:h-7 !mb-3">
+                  <h1 className="font-bold text-sm xl:text-xl">
+                    {car.model.toUpperCase()}
+                  </h1>
+                  <button className="">Update</button>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
