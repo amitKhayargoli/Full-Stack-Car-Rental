@@ -7,6 +7,8 @@ import "swiper/css/pagination";
 import { useCallback, useEffect, useState } from "react";
 import GoBack from "./client/GoBack";
 
+import { useForm } from "react-hook-form";
+
 import {
   Modal,
   ModalTrigger,
@@ -33,9 +35,7 @@ const Garage = () => {
   const [availableCars, setAvailableCars] = useState(cars);
 
   const [selectedTime, setSelectedTime] = useState("");
-
   const [car, setCar] = useState("");
-
   const [total, setTotal] = useState(0);
 
   const fetchCars = useCallback(async () => {
@@ -46,8 +46,6 @@ const Garage = () => {
       );
       const carData = response.data;
       setCars(carData);
-
-      // console.log(carData);
 
       setAvailableCars(
         carData.filter((car) => car.bookingStatus === "Available")
@@ -63,6 +61,8 @@ const Garage = () => {
 
   const handleChange = (event) => {
     const carId = Number(event.target.getAttribute("data-car-id"));
+
+    console.log(carId);
     const newSelectedTime = event.target.value;
     setSelectedTime(newSelectedTime);
 
@@ -78,11 +78,37 @@ const Garage = () => {
     }
   };
 
-  const handleRentCar = async (event) => {
-    const carId = event.currentTarget.getAttribute("data-car-id");
+  const handleRentCar = async (carId) => {
+    console.log(carId);
 
     const bookingStatus = "Pending";
-    // const userId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
+
+    // Car add garne to rental table
+    try {
+      const response = await axios.post(
+        `http://localhost:5000/api/rental/${carId}`,
+        {
+          carId,
+          userId,
+          rentalDay: selectedTime,
+          rentalPrice: total,
+        }
+      );
+
+      toast.success("Booking Successful!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setIsModalOpen(false);
+    } catch (err) {
+      console.error("Error booking:", err);
+      toast.error(err.message);
+    }
 
     try {
       const req = { bookingStatus };
@@ -216,10 +242,7 @@ const Garage = () => {
                               className="xl:w-[80%]"
                             />
 
-                            <form
-                              action=""
-                              className="flex flex-col justify-between gap-6 h-full"
-                            >
+                            <form className="flex flex-col justify-between gap-6 h-full">
                               <h4>Rental Duration</h4>
 
                               <div className="flex gap-2 justify-center">
@@ -235,7 +258,7 @@ const Garage = () => {
                                     value="3"
                                     data-car-id={car.carId}
                                     checked={selectedTime === "3"}
-                                    onChange={handleChange}
+                                    onClick={handleChange}
                                     hidden
                                   />
                                   3 days
@@ -253,7 +276,7 @@ const Garage = () => {
                                     value="5"
                                     data-car-id={car.carId}
                                     checked={selectedTime === "5"}
-                                    onChange={handleChange}
+                                    onClick={handleChange}
                                     hidden
                                   />
                                   5 days
@@ -271,7 +294,7 @@ const Garage = () => {
                                     value="7"
                                     data-car-id={car.carId}
                                     checked={selectedTime === "7"}
-                                    onChange={handleChange}
+                                    onClick={handleChange}
                                     hidden
                                   />
                                   7 days
@@ -294,17 +317,16 @@ const Garage = () => {
                                   data-car-id={car.carId}
                                   onClick={handleRemoveCar}
                                 >
-                                  <h1 className="!font-medium !text-[10px] md:!text-sm">
+                                  <h1 className="!font-medium !text-[10px] md:!text-sm !mt-1 sm:!mt-0">
                                     Remove From Garage
                                   </h1>
                                 </button>
                                 <button
-                                  type="button"
-                                  className="cursor-pointer flex bg-white-200 !px-5 rounded-sm border-1 border-gray-500 !p-2"
+                                  data-car-id={car.carId}
+                                  onClick={() => handleRentCar(car.carId)}
+                                  className="cursor-pointer flex bg-white-200 !px-5 rounded-sm border-1 border-gray-500 !p-2  !font-medium !text-[12px] !text-black md:!text-sm !mt-1 md:!mt-0"
                                 >
-                                  <h1 className="!font-medium !text-[12px] !text-black md:!text-sm !mt-1 md:!mt-0">
-                                    Proceed
-                                  </h1>
+                                  Proceed
                                 </button>
                               </div>
                             </form>
