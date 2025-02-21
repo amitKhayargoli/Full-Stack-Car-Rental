@@ -63,13 +63,29 @@ const addCarToGarage = async (req, res) => {
     // Add the car to the garage
     await GarageCar.create({ garageId: garage.garageId, carId: carIdInt });
 
-    res
-      .status(200)
-      .json({
-        message: `Car ${car.model} added to User ${userIdInt}'s garage`,
-      });
+    res.status(200).json({
+      message: `Car ${car.model} added to User ${userIdInt}'s garage`,
+    });
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+};
+
+const removeCarFromGarage = async (req, res) => {
+  const carId = req.params.id; // Ensure carId is extracted from URL parameter
+  console.log("Received carId:", carId); // Debugging log
+
+  try {
+    if (!carId) {
+      return res.status(400).json({ error: "Car ID is required" });
+    }
+
+    await GarageCar.destroy({ where: { carId: carId } });
+
+    res.status(200).send({ message: "Car removed from garage" });
+  } catch (error) {
+    console.error("Error removing car:", error);
+    res.status(500).json({ error: "Failed to remove car from garage" });
   }
 };
 
@@ -110,4 +126,5 @@ const getCarsFromGarage = async (req, res) => {
 module.exports = {
   addCarToGarage,
   getCarsFromGarage,
+  removeCarFromGarage,
 };
