@@ -23,11 +23,7 @@ const AdminPage = () => {
         isSidebarCollapsed={isSidebarCollapsed}
         setSidebarCollapsed={setSidebarCollapsed}
       />
-      <div
-        className={`${
-          isSidebarCollapsed ? "!px-0" : "xl:!pl-64" // Adjusts margin based on sidebar state
-        } `}
-      >
+      <div className={`${isSidebarCollapsed ? "!px-0" : "xl:!pl-64"} `}>
         <Navbar
           isSidebarCollapsed={isSidebarCollapsed}
           setSidebarCollapsed={setSidebarCollapsed}
