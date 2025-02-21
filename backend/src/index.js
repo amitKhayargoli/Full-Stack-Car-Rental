@@ -17,14 +17,14 @@ const { createUploadsFolder } = require("./security/helper");
 
 dotenv.config();
 const PORT = process.env.PORT;
-// app.use(cors());
-const corsOptions = {
-  origin: "http://localhost:5173", // Allow frontend at port 5173
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
+app.use(cors());
+// const corsOptions = {
+//   origin: "http://localhost:5173",
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 app.use("/uploads", express.static("uploads")); // Serve static files from the "uploads" directory
 createUploadsFolder();
