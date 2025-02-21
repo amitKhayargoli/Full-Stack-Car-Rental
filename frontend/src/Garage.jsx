@@ -79,42 +79,31 @@ const Garage = () => {
   };
 
   const handleRentCar = async (carId) => {
-    console.log(carId);
+    console.log("Renting Car ID:", carId);
 
+    const userId = parseInt(localStorage.getItem("userId"), 10);
     const bookingStatus = "Pending";
-    const userId = localStorage.getItem("userId");
 
-    // Car add garne to rental table
-    try {
-      const response = await axios.post(
-        `http://localhost:5000/api/rental/${carId}`,
-        {
-          carId,
-          userId,
-          rentalDay: selectedTime,
-          rentalPrice: total,
-        }
-      );
-
-      toast.success("Booking Successful!", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-      });
-      setIsModalOpen(false);
-    } catch (err) {
-      console.error("Error booking:", err);
-      toast.error(err.message);
+    if (!userId || !carId || !selectedTime || !total) {
+      toast.error("Please select rental duration before proceeding.");
+      return;
     }
 
     try {
-      const req = { bookingStatus };
-      const res = await axios.put(
+      // Add car to rental table
+      const rentalData = {
+        carId,
+        userId,
+        rentalDays: selectedTime,
+        rentalPrice: total,
+      };
+
+      await axios.post(`http://localhost:5000/api/rental/${carId}`, rentalData);
+
+      // Update car booking status
+      await axios.put(
         `http://localhost:5000/Car/updateCarBookingStatus/${carId}`,
-        req,
+        { bookingStatus },
         {
           headers: {
             "Content-Type": "application/json",
@@ -122,14 +111,15 @@ const Garage = () => {
         }
       );
 
-      console.log(res);
-
-      toast.success("Car Rented successfully!");
-
-      fetchCars();
+      toast.success("Request Submitted!");
+      setIsModalOpen(false);
+      fetchCars(); // Refresh car list
     } catch (error) {
-      toast.error("Error Renting Car!");
-      console.error("Error Renting Car:", error);
+      console.error(
+        "Error Renting Car:",
+        error.response?.data || error.message
+      );
+      toast.error("Error processing rental. Please try again.");
     }
   };
 
@@ -150,8 +140,12 @@ const Garage = () => {
       toast.success("Car Removed Successfully!");
       console.log(res.data);
     } catch (error) {
+      console.error(
+        "Error Renting Car:",
+        error.response?.data || error.message
+      );
+
       toast.error("Error Removing Car!");
-      console.error("Error Removing Car:", error);
     }
   };
 
@@ -324,6 +318,7 @@ const Garage = () => {
                                 <button
                                   data-car-id={car.carId}
                                   onClick={() => handleRentCar(car.carId)}
+                                  type="button"
                                   className="cursor-pointer flex bg-white-200 !px-5 rounded-sm border-1 border-gray-500 !p-2  !font-medium !text-[12px] !text-black md:!text-sm !mt-1 md:!mt-0"
                                 >
                                   Proceed

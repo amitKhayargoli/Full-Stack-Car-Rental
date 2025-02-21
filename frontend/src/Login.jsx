@@ -33,7 +33,6 @@ export default function Login() {
   });
 
   const onSubmit = async (data) => {
- 
     console.log("Logging in with:", data);
 
     axios
