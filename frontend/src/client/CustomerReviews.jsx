@@ -67,8 +67,6 @@ const CustomerReviews = () => {
 
         <Button title="Add Review" type="submit" />
       </form>
-
-      <ToastContainer></ToastContainer>
     </div>
   );
 };

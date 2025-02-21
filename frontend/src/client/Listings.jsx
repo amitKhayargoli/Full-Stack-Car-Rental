@@ -81,8 +81,6 @@ const Listings = () => {
           ))}
         </div>
       </div>
-
-      <ToastContainer className="!mt-22 !mx-5 !w-[90%] xl:w-full" />
     </div>
   );
 };

@@ -82,8 +82,6 @@ const Favorites = () => {
           ))}
         </div>
       </div>
-
-      <ToastContainer />
     </div>
   );
 };

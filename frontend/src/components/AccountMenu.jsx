@@ -22,6 +22,7 @@ const darkTheme = createTheme({
 
 export default function AccountMenu() {
   const [image, setImage] = useState("");
+  const [User, setUserData] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,12 +39,14 @@ export default function AccountMenu() {
         `http://localhost:5000/api/userProfile/${userId}`
       );
 
-      console.log("Response:", response.data.data.profilePictureURL);
+      console.log("Response:", response.data.data);
 
       localStorage.setItem(
         "profilePicURL",
         response.data.data.profilePictureURL
       );
+
+      setUserData(response.data.data.user);
 
       if (response.data.data.profilePictureURL) {
         setImage(response.data.data.profilePictureURL);
@@ -130,8 +133,9 @@ export default function AccountMenu() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose}>
-            <Avatar sx={{ bgcolor: "#7366ff" }} src={image} alt="Profile" /> My
-            account
+            <Avatar sx={{ bgcolor: "#7366ff" }} src={image} alt="Profile" />
+
+            {User.email}
           </MenuItem>
           <Divider />
           <MenuItem
