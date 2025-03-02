@@ -1,5 +1,3 @@
-
-
 const uploadFile = (req, res) => {
   try {
     if (!req.file) {

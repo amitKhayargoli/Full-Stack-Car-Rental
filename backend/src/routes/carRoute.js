@@ -9,4 +9,6 @@ router.get("/", carController.getAllCars);
 
 router.put("/updateCarBookingStatus/:id", carController.updateCarBookingStatus);
 
+router.post("/:carId", carController.deleteCar);
+
 module.exports = router;

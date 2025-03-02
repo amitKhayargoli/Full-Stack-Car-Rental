@@ -1,4 +1,4 @@
-const { Car, carRental, Users } = require("../model/associations");
+const { Car, carRental, Users, UserProfile } = require("../model/associations");
 
 const addRental = async (req, res) => {
   try {
@@ -8,7 +8,12 @@ const addRental = async (req, res) => {
     const userIdInt = parseInt(userId, 10);
     const carIdInt = parseInt(carId, 10);
 
-    if (isNaN(userIdInt) || isNaN(carIdInt) || isNaN(rentalDays) || isNaN(rentalPrice)) {
+    if (
+      isNaN(userIdInt) ||
+      isNaN(carIdInt) ||
+      isNaN(rentalDays) ||
+      isNaN(rentalPrice)
+    ) {
       return res.status(400).json({ error: "Invalid input values" });
     }
 
@@ -28,10 +33,26 @@ const addRental = async (req, res) => {
   }
 };
 
-
 const getAllRentals = async (req, res) => {
   try {
-    const cars = await carRental.findAll();
+    const cars = await carRental.findAll({
+      include: [
+        {
+          model: Car,
+          as: "CarDetails",
+        },
+        {
+          model: Users,
+          as: "UserDetails",
+          include: [
+            {
+              model: UserProfile,
+              as: "profile",
+            },
+          ],
+        },
+      ],
+    });
     res.status(200).send({ data: cars });
   } catch (error) {
     console.log(error);

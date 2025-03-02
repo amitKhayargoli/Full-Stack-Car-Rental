@@ -29,7 +29,7 @@ app.use(cors());
 app.use("/uploads", express.static("uploads")); // Serve static files from the "uploads" directory
 createUploadsFolder();
 app.use(bodyParser.json());
-// app.use(authenticateToken);
+app.use(authenticateToken);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/garage", garageRoutes);

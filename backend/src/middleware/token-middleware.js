@@ -17,10 +17,6 @@ function authenticateToken(req, res, next) {
     return next();
   }
 
-  // Get token from Authorization header
-  // const token = req.header("Authorization")?.split(" ")[1];
-  // console.log("Token2222222222222:", token);
-
   const authorizationHeader = req.header("Authorization");
   console.log("Authorization Header:", authorizationHeader);
 

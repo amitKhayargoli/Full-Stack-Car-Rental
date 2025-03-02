@@ -75,4 +75,19 @@ const updateCarBookingStatus = async (req, res) => {
   }
 };
 
-module.exports = { addCar, getAllCars, updateCarBookingStatus };
+const deleteCar = async (req, res) => {
+  try {
+    const carId = parseInt(req.params.carId, 10);
+
+    if (isNaN(carId)) {
+      return res.status(400).json({ message: "Invalid car ID" });
+    }
+    const result = await Car.destroy({
+      where: { carId: carId },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { addCar, getAllCars, updateCarBookingStatus, deleteCar };
