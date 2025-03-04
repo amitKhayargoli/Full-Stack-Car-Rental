@@ -62,9 +62,10 @@ Run the backend server:
 ```bash
 
 npm start
+
+```
 Frontend Setup
 Navigate to the frontend directory:
-```
 ```bash
 
 cd frontend
