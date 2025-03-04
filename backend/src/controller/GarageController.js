@@ -1,5 +1,33 @@
 const { User, Car, Garage, GarageCar } = require("../model/associations");
 
+// Controller function to add a car to a user's garage
+// const addCarToGarage = async (req, res) => {
+//   const { userId, carId } = req.body;
+//   try {
+//     // Find the user's garage
+//     let garage = await Garage.findOne({ where: { userId } });
+//     if (!garage) {
+//       garage = await Garage.create({ userId });
+//       return res.status(404).json({ error: `Garage created  for ${userId}` });
+//     }
+
+//     // Find the car
+//     const car = await Car.findByPk(carId);
+//     if (!car) {
+//       return res.status(404).json({ error: "Car not found" });
+//     }
+
+//     // Add the car to the garage
+//     await garage.addCar(car);
+
+//     res
+//       .status(200)
+//       .json({ message: `Car ${car.model} added to User ${userId}'s garage` });
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+// };
+
 const addCarToGarage = async (req, res) => {
   const { userId, carId } = req.body;
   try {

@@ -9,7 +9,7 @@ const BackgroundVideo = () => {
   return (
     <div className="video-container">
       <ReactPlayer
-        url="https://vimeo.com/1056753657?share=copy#t=0" // Replace with your video URL
+        url="https://vimeo.com/1056753657?share=copy#t=0"
         playing
         loop
         muted
@@ -25,10 +25,7 @@ const BackgroundVideo = () => {
           DRIVE BEYOND YOUR LIMITS
         </p>
 
-        <button
-          className="cursor-pointer"
-          onClick={() => navigate("/CustomerDashboard")}
-        >
+        <button className="cursor-pointer" onClick={() => navigate("/Login")}>
           <ChevronRight size={60} className="border-2"></ChevronRight>
         </button>
       </div>

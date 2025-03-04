@@ -48,11 +48,11 @@ const AdminSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
       icon: <User className={iconClassNames} />,
       path: "/Admin/Users",
     },
-    {
-      name: "Customer Review",
-      icon: <Book className={iconClassNames} />,
-      path: "/Admin/CustomerReview",
-    },
+    // {
+    //   name: "Customer Review",
+    //   icon: <Book className={iconClassNames} />,
+    //   path: "/Admin/CustomerReview",
+    // },
     {
       name: "Settings",
       icon: <Settings className={iconClassNames} />,

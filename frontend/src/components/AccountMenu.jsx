@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { UserContext } from "./UserContext";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import { useNavigate } from "react-router-dom";
@@ -13,7 +15,9 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import axios from "axios";
+
 import { useEffect, useState } from "react";
+
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
@@ -21,7 +25,9 @@ const darkTheme = createTheme({
 });
 
 export default function AccountMenu() {
+  const { setProfilePicture, profilePicture } = useContext(UserContext);
   const [image, setImage] = useState("");
+  const [User, setUserData] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,10 +44,17 @@ export default function AccountMenu() {
         `http://localhost:5000/api/userProfile/${userId}`
       );
 
-      console.log("Response:", response.data.data.profilePictureURL);
+      console.log("Response:", response.data.data);
+
+      localStorage.setItem(
+        "profilePicURL",
+        response.data.data.profilePictureURL
+      );
+
+      setUserData(response.data.data.user);
 
       if (response.data.data.profilePictureURL) {
-        setImage(response.data.data.profilePictureURL);
+        setProfilePicture(response.data.data.profilePictureURL);
       }
     } catch (error) {
       console.error("Error fetching profile:", error);
@@ -81,7 +94,7 @@ export default function AccountMenu() {
             >
               <Avatar
                 sx={{ width: 32, height: 32, bgcolor: "#7366ff" }}
-                src={image}
+                src={profilePicture}
                 alt="Profile"
               />
             </IconButton>
@@ -125,8 +138,13 @@ export default function AccountMenu() {
           anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         >
           <MenuItem onClick={handleClose}>
-            <Avatar sx={{ bgcolor: "#7366ff" }} src={image} alt="Profile" /> My
-            account
+            <Avatar
+              sx={{ bgcolor: "#7366ff" }}
+              src={profilePicture}
+              alt="Profile"
+            />
+
+            {User.email}
           </MenuItem>
           <Divider />
           <MenuItem

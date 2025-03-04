@@ -16,18 +16,13 @@ const AdminPage = () => {
   const [theme, setTheme] = useTheme();
 
   const toggleDarkMode = () => setTheme(theme === "light" ? "dark" : "light");
-  console.log("setSidebarCollapsed:", setSidebarCollapsed);
   return (
     <div className={`${theme === "dark" ? "dark" : ""} border-box-page`}>
       <AdminSidebar
         isSidebarCollapsed={isSidebarCollapsed}
         setSidebarCollapsed={setSidebarCollapsed}
       />
-      <div
-        className={`${
-          isSidebarCollapsed ? "!px-0" : "xl:!pl-64" // Adjusts margin based on sidebar state
-        } `}
-      >
+      <div className={`${isSidebarCollapsed ? "!px-0" : "xl:!pl-64"} `}>
         <Navbar
           isSidebarCollapsed={isSidebarCollapsed}
           setSidebarCollapsed={setSidebarCollapsed}

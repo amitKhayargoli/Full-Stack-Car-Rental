@@ -86,7 +86,7 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
   };
 
   return (
-    <div className="w-full h-[100vh] bg-[#f9f9f9] dark:bg-black !px-8 !py-5">
+    <div className="w-full min-h-screen bg-[#f9f9f9] dark:bg-black !px-8 !py-5">
       <div className="flex flex-col gap-[1px]">
         <h1 className="dark:text-gray-50 font-bold text-2xl">Search</h1>
         <p className="dark:text-gray-50">

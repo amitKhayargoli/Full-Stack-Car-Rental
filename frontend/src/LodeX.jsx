@@ -7,17 +7,38 @@ import about4 from "./LandingImg/fordmustang.jpg";
 import Footer from "./Footer";
 import Testimonial from "./Testimonial";
 import BackgroundVideo from "./BackgroundVideo";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import axios from "axios";
+import Contact from "./client/Contact";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 function LodeX() {
-  // useEffect(() => {
-  //   const accessToken = localStorage.getItem("token");
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/customerReview/all"
+        );
+        // console.log(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchTestimonials();
+  }, []);
 
-  //   const [isLoggedin, setIsLoggedIn] = useState(false);
+  // Motion config
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
 
-  //   if (accessToken) {
-  //     setIsLoggedIn(true);
-  //   }
-  // });
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
     <div className="container">
@@ -27,7 +48,7 @@ function LodeX() {
             <span>LO</span>DEX
           </a>
         </b>
-        <ul className="navbar-links">
+        <ul>
           <li>
             <a href="#">Home</a>
           </li>
@@ -35,7 +56,7 @@ function LodeX() {
             <a href="#About">About</a>
           </li>
           <li>
-            <a href="#Contact">Contact</a>
+            <a href="/Contact">Contact</a>
           </li>
           <li>
             <a href="#Reviews">Reviews</a>
@@ -46,52 +67,9 @@ function LodeX() {
             Login
           </a>
         </button>
-
-        {/* <div className="nav-close">
-          <i class="ri-close-large-line"></i>
-        </div>
-
-        <div className="nav-toggle">
-          <i class="ri-menu-line"></i>
-        </div> */}
-      </div>
-      <div className="body">
-        <BackgroundVideo></BackgroundVideo>
       </div>
 
-      {/* <div class="icons-container">
-        <div class="icons icon1">
-          <i class="fa-solid fa-house"></i>
-          <div class="content">
-            <h3>159+</h3>
-            <p>branches</p>
-          </div>
-        </div>
-
-        <div class="icons icon2">
-          <i class="fa-solid fa-car"></i>
-          <div class="content">
-            <h3>322+</h3>
-            <p>cars sold</p>
-          </div>
-        </div>
-
-        <div class="icons icon3">
-          <i class="fa-solid fa-users"></i>
-          <div class="content">
-            <h3>300+</h3>
-            <p>happy clients</p>
-          </div>
-        </div>
-
-        <div class="icons icon4">
-          <i class="fa-solid fa-car"></i>
-          <div class="content">
-            <h3>400+</h3>
-            <p>new cars</p>
-          </div>
-        </div>
-      </div> */}
+      <BackgroundVideo />
 
       <div className="about-section" id="About">
         <div className="about1">
@@ -101,7 +79,7 @@ function LodeX() {
           <div className="about-text">
             <h1 style={{ color: "white" }}>We are</h1>
             <p style={{ color: "#888888" }}>
-              A company of Dedicated Professsionals with extensive experience in
+              A company of Dedicated Professionals with extensive experience in
               car sales.
             </p>
           </div>
@@ -145,6 +123,29 @@ function LodeX() {
           </div>
         </div>
       </div>
+
+      <motion.section
+        ref={ref}
+        variants={fadeInUp}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="car-rental-section"
+      >
+        <h1 style={{ textAlign: "center", color: "white" }}>
+          Car Rental Service
+        </h1>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#888888",
+            maxWidth: "700px",
+            margin: "auto",
+          }}
+        >
+          Need a ride? Rent high-quality, luxury, and economy cars at affordable
+          prices. Experience smooth and hassle-free car rental with Lodex.
+        </p>
+      </motion.section>
 
       <section>
         <h1>Our Partners</h1>

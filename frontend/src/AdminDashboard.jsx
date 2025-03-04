@@ -6,16 +6,15 @@ import car3 from "./img/mini-car-03.png";
 import { ResponsiveContainer, BarChart, Bar, XAxis, Tooltip } from "recharts";
 import mileStaticsData from "./mileStatics";
 import ClientSidebar from "./client/ClientSidebar";
+import { useEffect, useState } from "react";
 
 export default function AdminDashboard() {
   return (
     <>
-      {/* <Navbar></Navbar> */}
-      <div className="second">
-        {/* <ClientSidebar /> */}
-
-        {/* <Sidebar /> */}
-
+      <div
+        className={`second bg-white dark:bg-black 
+         `}
+      >
         <div className="AdminDashboard">
           <div className="cardStats">
             <div className="stat1 stats">
@@ -30,7 +29,7 @@ export default function AdminDashboard() {
 
             <div className="stat2 stats">
               <div className="section1">
-                <h5>Daily Trips</h5>
+                <h5>Total Bookings</h5>
                 <h3>1697+</h3>
               </div>
               <div className="section2">
@@ -40,7 +39,7 @@ export default function AdminDashboard() {
 
             <div className="stat3 stats">
               <div className="section1">
-                <h5>Client Annually</h5>
+                <h5>Clients Active</h5>
                 <h3>87k+</h3>
               </div>
               <div className="section2">
@@ -60,9 +59,9 @@ export default function AdminDashboard() {
           </div>
 
           {/* bar graph */}
-          <div className="statics">
+          <div className="statics ">
             <div className="statss">
-              <h3>Car Sales</h3>
+              <h3 className="!text-2xl ">Car Sales</h3>
               <ResponsiveContainer width="210%" aspect={4 / 1}>
                 <BarChart data={mileStaticsData}>
                   <XAxis dataKey="name" stroke="#2884ff" />

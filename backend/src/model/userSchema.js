@@ -1,8 +1,6 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../database/db");
 
-const UserProfile = require("./userProfileSchema");
-
 const Users = sequelize.define("users", {
   userId: {
     type: DataTypes.INTEGER,
@@ -31,8 +29,6 @@ const Users = sequelize.define("users", {
     defaultValue: "user",
   },
 });
-
-// Users.hasOne(UserProfile, { foreignKey: "userId" });
 
 (async () => {
   try {

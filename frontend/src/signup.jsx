@@ -49,8 +49,6 @@ export default function Signup() {
 
         // Check if access_token exists inside response.data
         if (response.data) {
-          console.log("Created user email:", response.data.email);
-
           navigate("/login"); // ✅ Redirect to Login
         } else {
           alert("Login failed! Check credentials.");
@@ -138,7 +136,9 @@ export default function Signup() {
                   {errors.confirmPassword?.message}
                 </span>
               </div>
-              <button className="submit-btn">Signup</button>
+              <button type="submit" className="submit-btn">
+                Signup
+              </button>
             </form>
             <p className="login-text">
               Already have an account? <Link to="/Login">Login</Link>

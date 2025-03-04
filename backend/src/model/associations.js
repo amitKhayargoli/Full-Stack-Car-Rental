@@ -4,6 +4,7 @@ const Garage = require("./garageSchema");
 const UserProfile = require("./userProfileSchema");
 const Users = require("./userSchema");
 
+//Updated Associations file
 const carRental = require("./carRentalSchema");
 
 Users.hasOne(Garage, { foreignKey: "userId" });
@@ -15,13 +16,11 @@ UserProfile.belongsTo(Users, { foreignKey: "userId", as: "user" });
 Garage.belongsToMany(Car, { through: GarageCar, foreignKey: "garageId" });
 Car.belongsToMany(Garage, { through: GarageCar, foreignKey: "carId" });
 
-Car.hasOne(carRental, { foreignKey: "carId" });
-carRental.belongsTo(Car, {
-  foreignKey: "carId",
-});
+Car.hasOne(carRental, { foreignKey: "carId", as: "RentalDetails" });
+carRental.belongsTo(Car, { foreignKey: "carId", as: "CarDetails" });
 
-Users.hasMany(carRental, { foreignKey: "userId" });
-carRental.belongsTo(Users, { foreignKey: "userId" });
+Users.hasMany(carRental, { foreignKey: "userId", as: "UserRentals" });
+carRental.belongsTo(Users, { foreignKey: "userId", as: "UserDetails" });
 
 module.exports = {
   Users,
@@ -29,4 +28,5 @@ module.exports = {
   Garage,
   GarageCar,
   carRental,
+  UserProfile,
 };

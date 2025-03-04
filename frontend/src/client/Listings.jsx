@@ -28,7 +28,7 @@ const Listings = () => {
         console.log(response.data.data);
 
         const carData = response.data.data;
-        setCars(carData);
+
         setAvailableCars(
           carData.filter((car) => car.bookingStatus === "Available")
         );
@@ -57,10 +57,10 @@ const Listings = () => {
 
         {/* Car Section */}
 
-        <div className="flex gap-6 w-full flex-wrap ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 ">
           {/* Car Card */}
           {availableCars.map((car) => (
-            <div className="!p-4 bg-[#f9f9f9] dark:bg-[#1d1b30] xl:w-[40%] rounded-xl">
+            <div className="!p-4 bg-[#f9f9f9] dark:bg-[#1d1b30]  rounded-xl">
               <img
                 className="w-full object-contain h-[300px]"
                 alt="car Image"
@@ -81,8 +81,6 @@ const Listings = () => {
           ))}
         </div>
       </div>
-
-      <ToastContainer className="!mt-22 !mx-5 !w-[90%] xl:w-full" />
     </div>
   );
 };

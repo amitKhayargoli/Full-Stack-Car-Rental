@@ -7,6 +7,8 @@ const Car = sequelize.define("Car", {
     primaryKey: true,
     autoIncrement: true, // Auto-increment ID
     allowNull: false,
+    onUpdate: "CASCADE",
+    onDelete: "CASCADE",
   },
   model: {
     type: DataTypes.STRING,
@@ -43,15 +45,14 @@ const Car = sequelize.define("Car", {
     allowNull: false,
   },
   bookingStatus: {
-    type: DataTypes.ENUM("Available", "Pending", "Booked"),
-    allowNull: false,
+    type: DataTypes.ENUM("Available", "Booked", "Pending"), // Enum values
     defaultValue: "Available",
   },
 });
 
 (async () => {
   try {
-    await Car.sync(); // Sync models to the database
+    await sequelize.sync(); // Sync models to the database
     console.log("Car table has been created");
   } catch (error) {
     console.log("Error:", error.message);
