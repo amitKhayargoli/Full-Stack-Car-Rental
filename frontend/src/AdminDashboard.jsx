@@ -11,15 +11,10 @@ import { useEffect, useState } from "react";
 export default function AdminDashboard() {
   return (
     <>
-      {/* <Navbar></Navbar> */}
       <div
-        className={`second bg-white dark:bg-black max-w-[90%] 
+        className={`second bg-white dark:bg-black 
          `}
       >
-        {/* <ClientSidebar /> */}
-
-        {/* <Sidebar /> */}
-
         <div className="AdminDashboard">
           <div className="cardStats">
             <div className="stat1 stats">

@@ -22,7 +22,7 @@ import ActiveBids from "./client/ActiveBids";
 import Listings from "./client/Listings";
 import Favorites from "./client/Favorites";
 import AdminActiveBids from "./AdminActiveBids";
-
+import Bookings from "./client/Bookings";
 function App() {
   return (
     <BrowserRouter>
@@ -30,6 +30,7 @@ function App() {
         <Route path="/" element={<Lodex />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Signup" element={<Signup />} />
+        <Route path="/Contact" element={<Contact />} />
         <Route element={<ProtectedRoute roleRequired={"admin"} />}>
           <Route path="/Admin" element={<AdminPage />}>
             <Route index element={<Navigate to="/Admin/Dashboard" replace />} />
@@ -47,6 +48,7 @@ function App() {
           <Route path="/client" element={<ClientPage />}>
             //Default Route is The Listings Page
             <Route index element={<Navigate to="/Client/Listings" replace />} />
+            <Route path="Bookings" element={<Bookings />} />
             <Route path="search" element={<Search />} />
             <Route path="contact" element={<Contact />} />
             <Route path="ActiveBids" element={<ActiveBids />} />
