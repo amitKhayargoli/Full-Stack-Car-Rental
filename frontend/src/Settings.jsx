@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./Booking.css";
 import uploadFile from "./components/UploadFile";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
-
+import { UserContext } from "./components/UserContext";
 const Settings = () => {
   const [selectedFile, setSelectedFile] = useState(null);
-
+  const { setProfilePicture } = useContext(UserContext);
   const Id = localStorage.getItem("userId");
   const [userId, setUserId] = useState(Id);
   const [fileName, setFileName] = useState("");
@@ -61,23 +61,25 @@ const Settings = () => {
     setUserData({ ...userData, [name]: value });
   };
 
-  // Handle Image Upload & Preview
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
-      setUserData(userData);
+
+      // Use Object URL to show the preview instantly
+      const imageUrl = URL.createObjectURL(file);
+      setUserData((prev) => ({ ...prev, profilePictureURL: imageUrl }));
     }
   };
 
   const onSubmit = async (formData) => {
     console.log("Form Data Submitted:", formData);
     try {
-      let imageUrl = "";
+      let imageUrl = userData?.profilePictureURL || ""; // Keep existing URL if no new image is uploaded
 
       if (selectedFile) {
-        const data = new FormData(); // Create new FormData
+        const data = new FormData();
         data.append("file", selectedFile);
 
         const uploadResponse = await axios.post(
@@ -92,26 +94,29 @@ const Settings = () => {
           throw new Error("File URL is missing from response");
         }
       }
+
+      const updatedData = {
+        ...formData,
+        ...(selectedFile && { profilePictureURL: imageUrl }), // Only include profilePictureURL if a new file is selected
+      };
+
       if (userData) {
         await axios.put(
           `http://localhost:5000/api/userProfile/${userId}`,
-
-          {
-            ...formData,
-            profilePictureURL: imageUrl,
-          }
+          updatedData
         );
+        setProfilePicture(imageUrl);
         toast.success("Profile updated successfully!");
+        fetchUserProfile(userId);
       } else {
         await axios.post(`http://localhost:5000/api/userProfile`, {
           userId,
-          ...formData,
-          profilePictureURL: imageUrl,
+          ...updatedData,
         });
-        alert("Profile created successfully!");
+        toast.success("Profile created successfully!");
       }
     } catch (error) {
-      console.error("Error updating profile:", error);
+      toast.error(error.response.data.error);
     }
   };
 

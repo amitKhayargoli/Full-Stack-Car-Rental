@@ -1,5 +1,5 @@
 import { Mail, MapPin, Phone, User2 } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 
@@ -26,7 +26,7 @@ const Contact = () => {
       );
   };
   return (
-    <div className=" bg-white dark:bg-black min-h-[calc(100vh)] flex flex-col-reverse xl:flex-row">
+    <div className=" bg-white dark:bg-black min-h-screen flex flex-col-reverse xl:flex-row">
       <div className="flex !p-10 ">
         <div className="  !p-3 rounded-3xl">
           <h2 className="dark:text-white !text-xl">Lodex Automotive Inc.</h2>
@@ -78,7 +78,7 @@ const Contact = () => {
 
         <h2>Send us your queries right now.</h2>
 
-        <form ref={form} onSubmit={sendEmail} className=" xl:!mt-12 ">
+        <fo rm ref={form} onSubmit={sendEmail} className=" xl:!mt-12 ">
           <div className="xl:flex xl:gap-12 ">
             <div className="xl:w-[40%] !mb-4 xl:!mb-0">
               <label htmlFor="">Name</label>
@@ -146,7 +146,7 @@ const Contact = () => {
             {/* <h1>Write your message here</h1> */}
             <textarea
               name="message"
-              className="bg-gray-200 dark:bg-black dark:border-[#16151a] dark:border-2 rounded-md w-full h-[200px] xl:min-h-[300px]  focus:outline-none !p-5"
+              className="bg-gray-200 dark:bg-black dark:border-[#16151a] dark:border-2 rounded-md h-[200px] xl:min-h-[300px]  focus:outline-none !p-5"
               id=""
               placeholder="Hey I want to inquire about my car delivery"
             ></textarea>
@@ -157,7 +157,7 @@ const Contact = () => {
               Submit
             </button>
           </div>
-        </form>
+        </fo>
       </div>
     </div>
   );
