@@ -54,10 +54,10 @@ const Favorites = () => {
 
         {/* Car Section */}
 
-        <div className="flex gap-6 w-full flex-wrap ">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {/* Car Card */}
           {cars.map((car) => (
-            <div className="relative !p-4 bg-[#f9f9f9] dark:bg-[#1d1b30] xl:w-[40%] rounded-xl">
+            <div className="relative !p-4 bg-[#f9f9f9] dark:bg-[#1d1b30] rounded-xl">
               <button className="absolute right-4">
                 <LucideTrash2></LucideTrash2>
               </button>
