@@ -118,4 +118,4 @@ Amit Khayargoli
 
 
 🗨️ Feedback
-If you have any questions or suggestions, feel free to open an issue or reach out via email at amit@example.com.
+If you have any questions or suggestions, feel free to open an issue or reach out via email at khayargoliamit99@gmail.com.
