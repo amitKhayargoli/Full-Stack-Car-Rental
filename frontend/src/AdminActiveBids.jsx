@@ -13,16 +13,19 @@ const AdminActiveBids = () => {
 
   const fetchCars = async () => {
     const response = await axios.get("http://localhost:5000/api/rental");
-    const carData = response.data.data;
+    const rentals = response.data.data;
 
-    console.log("carData", carData);
-    setCars(carData);
+    console.log("carData", rentals);
+    setCars(rentals);
 
-    const pendingCars = carData.filter(
-      (car) => car.bookingStatus === "Pending"
-    );
+    const pendingCars = rentals
+      .filter((rental) => rental.CarDetails.bookingStatus === "Pending")
+      .map((rental) => rental);
+
     setPendingCars(pendingCars);
   };
+
+  console.log(pendingCars);
 
   const handleBooking = async (event) => {
     const carId = event.currentTarget.getAttribute("data-car-id");
@@ -49,7 +52,7 @@ const AdminActiveBids = () => {
   }, []);
 
   return (
-    <div className="!p-8 dark:bg-black bg-white h-screen">
+    <div className="!p-8 dark:bg-black bg-white min-h-screen">
       <h1 className="dark:text-white text-2xl font-bold">Active Bids</h1>
 
       <div className="flex gap-6 w-full flex-wrap  ">
