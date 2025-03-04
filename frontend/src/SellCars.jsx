@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Sellcar.css";
-import Upload from "./Upload";
-import { ChromePicker } from "react-color";
-import UploadFile from "./components/UploadFile";
-const CarForm = () => {
+
+const CarForm = ({ onClose, fetchCars, car }) => {
   const [carData, setCarData] = useState({
     model: "",
     brand: "",
@@ -17,23 +15,36 @@ const CarForm = () => {
   });
 
   const [selectedFile, setSelectedFile] = useState(null);
-
   const [fileName, setFileName] = useState("");
+  const [previewUrl, setPreviewUrl] = useState("");
+  useEffect(() => {
+    if (car) {
+      setCarData({
+        model: car.model,
+        brand: car.brand,
+        color: car.color,
+        price: car.price,
+        speed: car.speed,
+        type: car.type,
+        year: car.year,
+        carImageURL: car.carImageURL,
+      });
+    }
+  }, [car]);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCarData({ ...carData, [name]: value });
   };
 
-  // Handle Image Upload & Preview
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
       setSelectedFile(file);
       setFileName(file.name);
 
-      setCarData(carData);
+      const previewUrl = URL.createObjectURL(file);
+      setPreviewUrl(previewUrl);
     }
   };
 
@@ -43,9 +54,8 @@ const CarForm = () => {
     try {
       let imageUrl = carData.carImageURL;
 
-      // 🔹 Upload file if selected
       if (selectedFile) {
-        const formData = new FormData(); // Create new FormData
+        const formData = new FormData();
         formData.append("file", selectedFile);
 
         const uploadResponse = await axios.post(
@@ -61,7 +71,6 @@ const CarForm = () => {
         }
       }
 
-      // 🔹 Send car data with the correct `carImageURL`
       const response = await axios.post("http://localhost:5000/Car", {
         ...carData,
         carImageURL: imageUrl,
@@ -79,6 +88,9 @@ const CarForm = () => {
         carImageURL: "",
       });
       setSelectedFile(null);
+      setPreviewUrl(""); // Reset the preview URL
+      fetchCars();
+      onClose();
     } catch (error) {
       console.error("Error adding car:", error);
     }
@@ -86,13 +98,13 @@ const CarForm = () => {
 
   return (
     <div className="car-form-container w-full">
-      <div className="form-content ">
-        <h1>Add New Car</h1>
+      <div className="form-content">
+        <h1>{car ? "Update car" : "Add a new car"}</h1>
         <form
           className="form w-full flex-wrap xl:flex-row"
           onSubmit={handleSubmit}
         >
-          <div className="flex flex-col flex-1 ">
+          <div className="flex flex-col flex-1">
             <div className="info">
               <label htmlFor="model">Car Model</label>
               <input
@@ -129,6 +141,7 @@ const CarForm = () => {
               <input
                 type="number"
                 name="price"
+                min="0"
                 value={carData.price}
                 onChange={handleChange}
                 required
@@ -139,6 +152,7 @@ const CarForm = () => {
               <input
                 type="number"
                 name="speed"
+                min="0"
                 value={carData.speed}
                 onChange={handleChange}
                 required
@@ -169,14 +183,14 @@ const CarForm = () => {
           </div>
 
           <div className="flex flex-col gap-8 flex-1 justify-center items-center">
-            <div className="w-full h-[60%] !p-6 xl:w-[500px] xl:h-[300px] flex flex-col-reverse  gap-2 items-center justify-center border-2 border-gray-700 rounded-3xl border-dashed ">
+            <div className="w-full h-[60%] !p-6 xl:w-[500px] xl:h-[300px] flex flex-col-reverse gap-2 items-center justify-center border-2 border-gray-700 rounded-3xl border-dashed">
               <label
                 htmlFor="carImage"
-                class="flex bg-[#3e3ea8]  transition-all duration-400 ease-in hover:bg-[#4848c7] text-white text-base !px-5 !py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
+                className="flex bg-[#3e3ea8] transition-all duration-400 ease-in hover:bg-[#4848c7] text-white text-base !px-5 !py-3 outline-none rounded w-max cursor-pointer mx-auto font-[sans-serif]"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  class="w-6 mr-2 fill-white inline"
+                  className="w-6 mr-2 fill-white inline"
                   viewBox="0 0 32 32"
                 >
                   <path
@@ -192,20 +206,34 @@ const CarForm = () => {
                 <input
                   type="file"
                   id="carImage"
-                  class="hidden"
+                  className="hidden"
                   accept="image/*"
                   onChange={handleImageUpload}
                 />
               </label>
-
-              <p className="!text-sm text-gray-500">
-                PNG, JPG SVG, WEBP, and GIF are Allowed.
-              </p>
-
+              {!car && (
+                <p className="!text-sm text-gray-500">
+                  PNG, JPG SVG, WEBP, and GIF are Allowed.
+                </p>
+              )}
               {fileName && <p>{fileName}</p>}
+              {previewUrl && (
+                <img
+                  src={previewUrl}
+                  alt="Car Preview"
+                  className="w-full h-[120px]  rounded-xl object-contain"
+                />
+              )}
+              {!previewUrl && carData.carImageURL && !selectedFile && (
+                <img
+                  src={carData.carImageURL}
+                  alt="Car Preview"
+                  className="w-full h-[200px] object-cover rounded-xl"
+                />
+              )}
             </div>
 
-            <button>Submit</button>
+            <button type="submit">Submit</button>
           </div>
         </form>
       </div>

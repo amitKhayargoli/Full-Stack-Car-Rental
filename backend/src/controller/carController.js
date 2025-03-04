@@ -75,4 +75,19 @@ const updateCarBookingStatus = async (req, res) => {
   }
 };
 
-module.exports = { addCar, getAllCars, updateCarBookingStatus };
+const deleteCar = async (req, res) => {
+  try {
+    const carId = parseInt(req.params.carId, 10);
+
+    const result = await Car.destroy({
+      where: { carId: carId },
+    });
+
+    res.status(200).json({ message: "Car deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+module.exports = { addCar, getAllCars, updateCarBookingStatus, deleteCar };

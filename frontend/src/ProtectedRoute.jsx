@@ -9,10 +9,10 @@ const ProtectedRoute = ({ roleRequired }) => {
   console.log(role);
 
   if (!token) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/Login" replace />;
   }
   if (role !== roleRequired) {
-    return <Navigate to="/unauthorized" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return <Outlet />;

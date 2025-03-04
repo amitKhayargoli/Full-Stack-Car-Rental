@@ -8,6 +8,7 @@ import {
   History,
   Book,
   X,
+  ShoppingBag,
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -25,6 +26,12 @@ const ClientSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
       name: "Listings",
       icon: <WalletCardsIcon className={iconClassNames} />,
       path: "/Client/Listings",
+    },
+
+    {
+      name: "Bookings",
+      icon: <ShoppingBag className={iconClassNames} />,
+      path: "/Client/Bookings",
     },
     {
       name: "Search",

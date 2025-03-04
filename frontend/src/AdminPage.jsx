@@ -16,7 +16,6 @@ const AdminPage = () => {
   const [theme, setTheme] = useTheme();
 
   const toggleDarkMode = () => setTheme(theme === "light" ? "dark" : "light");
-  console.log("setSidebarCollapsed:", setSidebarCollapsed);
   return (
     <div className={`${theme === "dark" ? "dark" : ""} border-box-page`}>
       <AdminSidebar
