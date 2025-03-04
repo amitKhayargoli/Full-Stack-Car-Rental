@@ -79,14 +79,14 @@ const deleteCar = async (req, res) => {
   try {
     const carId = parseInt(req.params.carId, 10);
 
-    if (isNaN(carId)) {
-      return res.status(400).json({ message: "Invalid car ID" });
-    }
     const result = await Car.destroy({
       where: { carId: carId },
     });
+
+    res.status(200).json({ message: "Car deleted successfully" });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
