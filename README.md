@@ -24,3 +24,86 @@ Welcome to **LODEX**, the ultimate platform to **rent your dream car**! Built on
 
 ```bash
 git clone https://github.com/amitKhayargoli/MERN-Lodex.git
+
+Backend Setup
+Navigate to the backend directory:
+
+bash
+Copy
+Edit
+cd backend
+Install the dependencies:
+
+bash
+Copy
+Edit
+npm install
+Set up environment variables in a .env file (you can refer to .env.example):
+
+DB_HOST=localhost
+DB_PORT=5000
+DB_USER=yourusername
+DB_PASSWORD=yourpassword
+secretkey=yoursecret
+expiresIn=1h
+Run the backend server:
+
+
+
+bash
+Copy
+Edit
+npm start
+Frontend Setup
+Navigate to the frontend directory:
+
+bash
+Copy
+Edit
+cd frontend
+Install the dependencies:
+
+bash
+Copy
+Edit
+npm install
+Run the frontend server:
+
+bash
+Copy
+Edit
+npm run dev
+🔒 Security
+Password Encryption: User passwords are securely hashed with bcrypt before being stored in the database.
+JWT Authentication: Token-based authentication ensures that only authorized users can access certain routes.
+
+📱 Screenshots
+The sleek homepage where users can browse and rent cars.
+
+![image](https://github.com/user-attachments/assets/a0c2e464-840f-4bed-be76-359bdafdf1bf)
+
+Detailed view of the car with all necessary information, availability, and rental options.
+
+💡 Roadmap
+ Admin Panel: A dashboard for admin users to manage car listings and user bookings.
+ User Reviews: Users can rate and leave reviews for cars.
+ Geolocation Feature: Users can filter cars based on their location.
+📜 License
+Distributed under the MIT License. See LICENSE for more information.
+
+🤝 Contributing
+We welcome contributions! If you'd like to contribute to LODEX, please fork the repository and submit a pull request.
+
+🧑‍💻 Authors
+Amit Khayargoli - Project Lead and Developer
+
+
+🧑‍💻Group Members
+Aryan Nakarmi
+Asrim Suwal 
+Ishan Rajdhami
+Amit Khayargoli
+
+
+🗨️ Feedback
+If you have any questions or suggestions, feel free to open an issue or reach out via email at amit@example.com.
