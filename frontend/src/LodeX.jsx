@@ -7,31 +7,38 @@ import about4 from "./LandingImg/fordmustang.jpg";
 import Footer from "./Footer";
 import Testimonial from "./Testimonial";
 import BackgroundVideo from "./BackgroundVideo";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
+import Contact from "./client/Contact";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 function LodeX() {
   useEffect(() => {
-    // const accessToken = localStorage.getItem("token");
-
-    // const [isLoggedin, setIsLoggedIn] = useState(false);
-
-    // if (accessToken) {
-    //   setIsLoggedIn(true);
-    // }
-
     const fetchTestimonials = async () => {
       try {
         const response = await axios.get(
           "http://localhost:5000/api/customerReview/all"
         );
         // console.log(response.data);
-        const testimonials = response.data;
       } catch (err) {
         console.log(err);
       }
     };
     fetchTestimonials();
   }, []);
+
+  // Motion config
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
+
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
     <div className="container">
@@ -49,7 +56,7 @@ function LodeX() {
             <a href="#About">About</a>
           </li>
           <li>
-            <a href="#Contact">Contact</a>
+            <a href="/Contact">Contact</a>
           </li>
           <li>
             <a href="#Reviews">Reviews</a>
@@ -62,7 +69,7 @@ function LodeX() {
         </button>
       </div>
 
-      <BackgroundVideo></BackgroundVideo>
+      <BackgroundVideo />
 
       <div className="about-section" id="About">
         <div className="about1">
@@ -72,7 +79,7 @@ function LodeX() {
           <div className="about-text">
             <h1 style={{ color: "white" }}>We are</h1>
             <p style={{ color: "#888888" }}>
-              A company of Dedicated Professsionals with extensive experience in
+              A company of Dedicated Professionals with extensive experience in
               car sales.
             </p>
           </div>
@@ -116,6 +123,29 @@ function LodeX() {
           </div>
         </div>
       </div>
+
+      <motion.section
+        ref={ref}
+        variants={fadeInUp}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="car-rental-section"
+      >
+        <h1 style={{ textAlign: "center", color: "white" }}>
+          Car Rental Service
+        </h1>
+        <p
+          style={{
+            textAlign: "center",
+            color: "#888888",
+            maxWidth: "700px",
+            margin: "auto",
+          }}
+        >
+          Need a ride? Rent high-quality, luxury, and economy cars at affordable
+          prices. Experience smooth and hassle-free car rental with Lodex.
+        </p>
+      </motion.section>
 
       <section>
         <h1>Our Partners</h1>
