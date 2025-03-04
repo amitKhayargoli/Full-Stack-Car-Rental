@@ -29,13 +29,13 @@ app.use(cors());
 app.use("/uploads", express.static("uploads")); // Serve static files from the "uploads" directory
 createUploadsFolder();
 app.use(bodyParser.json());
+app.use("/api/customerReview", customerReviewRouter);
 app.use(authenticateToken);
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/garage", garageRoutes);
 app.use("/Car", carRouter);
 app.use("/api/userProfile", userProfileRouter);
-app.use("/api/customerReview", customerReviewRouter);
 app.use("/api/file", router);
 
 app.use("/api/rental", carRentalRoutes);
