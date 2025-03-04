@@ -1,4 +1,4 @@
-const CustomerReview = require("../model/customerReviewSchema"); // Assuming the path to your CustomerReview model
+const CustomerReview = require("../model/customerReviewSchema");
 
 // Create a new customer review
 const createReview = async (req, res) => {
