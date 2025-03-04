@@ -25,54 +25,64 @@ Welcome to **LODEX**, the ultimate platform to **rent your dream car**! Built on
 ```bash
 git clone https://github.com/amitKhayargoli/MERN-Lodex.git
 
+```
+
 Backend Setup
 Navigate to the backend directory:
+  
+```bash
 
-bash
-Copy
-Edit
 cd backend
+```
+
 Install the dependencies:
 
-bash
-Copy
-Edit
+```bash
+
 npm install
+```
+
 Set up environment variables in a .env file (you can refer to .env.example):
 
+
+```bash
 DB_HOST=localhost
 DB_PORT=5000
 DB_USER=yourusername
 DB_PASSWORD=yourpassword
 secretkey=yoursecret
 expiresIn=1h
+```
+
+
 Run the backend server:
 
 
 
-bash
-Copy
-Edit
+```bash
+
 npm start
 Frontend Setup
 Navigate to the frontend directory:
+```
+```bash
 
-bash
-Copy
-Edit
 cd frontend
+```
 Install the dependencies:
 
 bash
-Copy
-Edit
-npm install
+
+```npm install
+```
 Run the frontend server:
 
-bash
-Copy
-Edit
+```bash
+
+
 npm run dev
+
+```
 🔒 Security
 Password Encryption: User passwords are securely hashed with bcrypt before being stored in the database.
 JWT Authentication: Token-based authentication ensures that only authorized users can access certain routes.
