@@ -107,7 +107,7 @@ i{
 }
 
 .booking,.settings{
-    background-color: #000000;
+    /* background-color: #000000; */
     color: white;
     display: flex;
     /* margin-left: 80px; */
