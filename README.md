@@ -72,9 +72,10 @@ cd frontend
 ```
 Install the dependencies:
 
-bash
+```bash
+npm install
 
-```npm install
+
 ```
 Run the frontend server:
 
