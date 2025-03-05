@@ -139,21 +139,17 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
       </div>
 
       <div className="!mt-6 bg-white h-[550px] rounded-2xl xl:!p-5 dark:bg-black dark:text-white">
-        {/* <h1 className="font-bold text-xl">270 Cars found</h1> */}
-
-        {/* Car Section */}
-
-        <div className="flex gap-6 w-full flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
           {/* Car Card */}
           {filteredcars.map((car) => (
             <div
-              className={` flex flex-col !p-3 bg-[#f9f9f9] w-[45%] sm:max-w-[30%] min-md:w-[22.5%]  dark:bg-gray-500 rounded-xl`}
+              key={car.id}
+              className="flex flex-col !p-3 bg-[#f9f9f9] dark:bg-gray-500 rounded-xl"
             >
               <img
-                className="object-contain flex flex-1 "
+                className="object-cover w-full h-[200px] rounded-xl"
                 alt="car Image"
                 src={car.carImageURL}
-                // src="https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?cs=srgb&dl=pexels-pixabay-210019.jpg&fm=jpg"
               />
 
               <div className="flex justify-between items-center !mb-3">
@@ -179,8 +175,6 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
                   <b className="text-green-500">{car.price}$</b>
                 </div>
               </div>
-
-              {/* <h1 className="text-green-500 font-bold text-2xl">$100</h1> */}
             </div>
           ))}
         </div>

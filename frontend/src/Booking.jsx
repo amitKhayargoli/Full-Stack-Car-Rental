@@ -47,7 +47,7 @@ const Booking = () => {
                 <ToolTip
                   item={{
                     name: car.UserDetails.username,
-                    image: car.UserDetails.profile.profilePictureURL,
+                    image: car.UserDetails.profile?.profilePictureURL,
                   }}
                 />
                 <h1 className="font-bold text-sm xl:text-xl !mt-3 !px-5">
