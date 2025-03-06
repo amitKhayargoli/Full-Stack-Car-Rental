@@ -138,8 +138,8 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
         </div>
       </div>
 
-      <div className="!mt-6 bg-white h-[550px] rounded-2xl xl:!p-5 dark:bg-black dark:text-white">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+      <div className="!mt-6 bg-white rounded-2xl xl:!p-5 dark:bg-black dark:text-white">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-6 w-full">
           {/* Car Card */}
           {filteredcars.map((car) => (
             <div
@@ -147,13 +147,13 @@ const Search = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
               className="flex flex-col !p-3 bg-[#f9f9f9] dark:bg-gray-500 rounded-xl"
             >
               <img
-                className="object-cover w-full h-[200px] rounded-xl"
+                className="object-contain w-full h-80 rounded-xl"
                 alt="car Image"
                 src={car.carImageURL}
               />
 
               <div className="flex justify-between items-center !mb-3">
-                <h1 className="font-bold text-sm xl:text-[18px]">
+                <h1 className="font-bold text-sm xl:text-[18px] !mx-8">
                   {car.model}
                 </h1>
                 <button>
