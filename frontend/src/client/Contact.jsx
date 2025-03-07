@@ -78,7 +78,7 @@ const Contact = () => {
 
         <h2>Send us your queries right now.</h2>
 
-        <fo rm ref={form} onSubmit={sendEmail} className=" xl:!mt-12 ">
+        <form ref={form} onSubmit={sendEmail} className=" xl:!mt-12 ">
           <div className="xl:flex xl:gap-12 ">
             <div className="xl:w-[40%] !mb-4 xl:!mb-0">
               <label htmlFor="">Name</label>
@@ -157,7 +157,7 @@ const Contact = () => {
               Submit
             </button>
           </div>
-        </fo>
+        </form>
       </div>
     </div>
   );

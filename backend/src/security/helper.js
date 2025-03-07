@@ -1,4 +1,5 @@
-import fs from "fs";
+// import fs from "fs";
+const fs = require("fs");
 
 const createUploadsFolder = () => {
   const dir = "./uploads";
@@ -8,4 +9,4 @@ const createUploadsFolder = () => {
   }
 };
 
-export { createUploadsFolder };
+module.exports = { createUploadsFolder };

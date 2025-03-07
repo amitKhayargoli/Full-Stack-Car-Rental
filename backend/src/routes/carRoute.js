@@ -11,4 +11,6 @@ router.put("/updateCarBookingStatus/:id", carController.updateCarBookingStatus);
 
 router.delete("/:carId", carController.deleteCar);
 
+router.put("/:carId", carController.updateCar);
+
 module.exports = router;

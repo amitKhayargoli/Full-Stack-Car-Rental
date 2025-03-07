@@ -10,14 +10,6 @@ import axios from "axios";
 const Testimonial = () => {
   const [testimonial, setTestimonial] = useState([]);
   useEffect(() => {
-    // const accessToken = localStorage.getItem("token");
-
-    // const [isLoggedin, setIsLoggedIn] = useState(false);
-
-    // if (accessToken) {
-    //   setIsLoggedIn(true);
-    // }
-
     const fetchTestimonials = async () => {
       try {
         const response = await axios.get(

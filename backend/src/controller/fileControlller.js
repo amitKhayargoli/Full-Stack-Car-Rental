@@ -13,4 +13,4 @@ const uploadFile = (req, res) => {
   }
 };
 
-export { uploadFile };
+module.exports = { uploadFile };
