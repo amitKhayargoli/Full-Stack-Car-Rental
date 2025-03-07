@@ -90,4 +90,35 @@ const deleteCar = async (req, res) => {
   }
 };
 
-module.exports = { addCar, getAllCars, updateCarBookingStatus, deleteCar };
+const updateCar = async (req, res) => {
+  try {
+    const carId = parseInt(req.params.carId, 10);
+    const { model, brand, color, price, speed, type, year, carImageURL } =
+      req.body;
+    const car = await Car.findByPk(carId);
+    if (!car) {
+      return res.status(404).send({ message: "Car not found" });
+    }
+    await car.update({
+      model,
+      brand,
+      color,
+      price,
+      speed,
+      type,
+      year,
+      carImageURL,
+    });
+    res.status(200).json({ message: "Car updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Failed to update the car" });
+  }
+};
+module.exports = {
+  addCar,
+  getAllCars,
+  updateCarBookingStatus,
+  deleteCar,
+  updateCar,
+};

@@ -71,22 +71,34 @@ const CarForm = ({ onClose, fetchCars, car }) => {
         }
       }
 
-      const response = await axios.post("http://localhost:5000/Car", {
-        ...carData,
-        carImageURL: imageUrl,
-      });
+      if (car) {
+        const updatedData = {
+          ...carData,
+          carImageURL: imageUrl,
+        };
 
-      alert(response.data.message);
-      setCarData({
-        model: "",
-        brand: "",
-        color: "",
-        price: "",
-        type: "",
-        year: "",
-        speed: "",
-        carImageURL: "",
-      });
+        const response = await axios.put(
+          `http://localhost:5000/Car/${car.carId}`,
+          updatedData
+        );
+      } else {
+        const response = await axios.post("http://localhost:5000/Car", {
+          ...carData,
+          carImageURL: imageUrl,
+        });
+
+        alert(response.data.message);
+        setCarData({
+          model: "",
+          brand: "",
+          color: "",
+          price: "",
+          type: "",
+          year: "",
+          speed: "",
+          carImageURL: "",
+        });
+      }
       setSelectedFile(null);
       setPreviewUrl(""); // Reset the preview URL
       fetchCars();

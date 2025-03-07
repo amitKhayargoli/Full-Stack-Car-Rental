@@ -67,7 +67,7 @@ const Car = () => {
 
         <h1
           className={`plus-sign dark:text-white ${buttonClassNames}`}
-          onClick={openCarForm}
+          onClick={() => openCarForm(null)}
         >
           <Plus />
           Add Car
