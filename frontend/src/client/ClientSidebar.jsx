@@ -43,11 +43,11 @@ const ClientSidebar = ({ isSidebarCollapsed, setSidebarCollapsed }) => {
       icon: <Mail className={iconClassNames} />,
       path: "/Client/Contact",
     },
-    {
-      name: "Favorites",
-      icon: <Bookmark className={iconClassNames} />,
-      path: "/Client/Favorites",
-    },
+    // {
+    //   name: "Favorites",
+    //   icon: <Bookmark className={iconClassNames} />,
+    //   path: "/Client/Favorites",
+    // },
     {
       name: "Active Bids",
       icon: <History className={iconClassNames} />,

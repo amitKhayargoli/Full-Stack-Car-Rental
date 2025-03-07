@@ -79,7 +79,7 @@ const AdminActiveBids = () => {
               </div>
 
               <div className="flex gap-2 items-center">
-                <img className="w-10 h-10 cursor-pointer" src={Cross} alt="" />
+                {/* <img className="w-10 h-10 cursor-pointer" src={Cross} alt="" /> */}
                 <img
                   data-car-id={car.carId}
                   onClick={(event) => handleBooking(event)}
