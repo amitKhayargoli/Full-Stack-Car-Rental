@@ -1,4 +1,4 @@
-# LODEX - Car Rental Website 🚗
+# Full Stack Car Rental Website 🚗
 
 Welcome to **LODEX**, the ultimate platform to **rent your dream car**! Built on the powerful **PERN stack** (PostgreSQL, Express.js, React, Node.js), LODEX brings you a seamless and efficient car rental experience. Whether you're planning a road trip or need a car for an event, LODEX is your go-to platform.
 
