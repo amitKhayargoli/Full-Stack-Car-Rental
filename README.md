@@ -23,7 +23,7 @@ Welcome to **LODEX**, the ultimate platform to **rent your dream car**! Built on
 ### Clone the repository
 
 ```bash
-git clone https://github.com/amitKhayargoli/MERN-Lodex.git
+git clone https://github.com/amitKhayargoli/Full-Stack-Car-Rental.git
 
 ```
 
